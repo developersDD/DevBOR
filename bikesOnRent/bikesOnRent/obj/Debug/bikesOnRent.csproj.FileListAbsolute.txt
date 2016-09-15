@@ -1,0 +1,5 @@
+F:\bikesOnRent\bikesOnRent\bin\bikesOnRent.dll
+F:\bikesOnRent\bikesOnRent\bin\bikesOnRent.pdb
+F:\bikesOnRent\bikesOnRent\obj\Debug\bikesOnRent.csprojResolveAssemblyReference.cache
+F:\bikesOnRent\bikesOnRent\obj\Debug\bikesOnRent.dll
+F:\bikesOnRent\bikesOnRent\obj\Debug\bikesOnRent.pdb
