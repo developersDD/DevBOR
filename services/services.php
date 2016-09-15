@@ -22,6 +22,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         }else{
             addBike($myPostData->bikeDetails);
         }
+    }else if(isset($myPostData->orderDetails)){
+        if(isset($myPostData->orderDetails->id)){
+            updateOrder($myPostData->orderDetails);
+        }else{
+            addOrder($myPostData->orderDetails);
+        }
     }
 }else if($_SERVER['REQUEST_METHOD'] == "GET"){
     if(isset($_GET['ownerId'])){
@@ -30,6 +36,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         removeBooking($_GET['bookingid']);
     }else if(isset($_GET['bikeId'])){
         deleteBike($_GET['bikeId']);
+    }else if(isset($_GET['orderId'])){
+        deleteOrder($_GET['orderId']);
     }
 }
 mysql_close($connection);
@@ -152,6 +160,42 @@ function deleteBike($id){
 
     $query = "DELETE FROM `main_database`.`bike` WHERE id='$id'";
     $result = mysql_query($query);print_r($result);
+    if($result){
+        echo  "Done! Owner Deleted";
+    }else{
+        echo  "ERROR! No Such Owner Exist";
+    }
+}
+
+function addOrder($orderData){
+    $query = "INSERT INTO `main_database`.`order_details` (`id`, `bookingid`, `totalfare`, `date`) VALUES (NULL, '$orderData->bookingid', '$orderData->totalfare','$orderData->date');";
+    $result = mysql_query($query);
+    if($result){
+        echo  "Done! Bike added Sucessfully";
+    }else{
+        echo  "ERROR! Cannot add  Bike";
+    }
+}
+
+function updateOrder($orderData){
+    $query = "select * from `main_database`.`order_details` where id='$orderData->id'";
+    $result = mysql_query($query);
+    $queryData = mysql_fetch_object($result);
+    if($queryData){
+        $query = "update `main_database`.`order_details` set bookingid='$orderData->bookingid',totalfare ='$orderData->totalfare',date='$orderData->date' where id='$orderData->id'";
+        $result = mysql_query($query);
+        if($result){
+            echo  "Done! Owner Updated Sucessfully";
+        }else{
+            echo  "ERROR! Cannot Update Owner";
+        }
+    }
+}
+
+function deleteOrder($id){
+
+    $query = "DELETE FROM `main_database`.`order_details` WHERE id='$id'";
+    $result = mysql_query($query);
     if($result){
         echo  "Done! Owner Deleted";
     }else{
