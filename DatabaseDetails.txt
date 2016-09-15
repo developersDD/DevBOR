@@ -1,0 +1,22 @@
+//Insert into Bike
+
+INSERT INTO `main_database`.`bike_owner` (`id`, `name`, `address`, `email`, `mob`, `offc_address`) VALUES ('1', 'Nitin Pawar', 'Kothrud,pune', 'nitinpawar@gmail.com', '8796104710', 'persistent,kothrud');
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+INsert into Bike Owner
+
+INSERT INTO `main_database`.`bike` (`id`, `name`, `description`, `number_plate`, `image`, `chasisnumber`, `rate_per_hr`, `bike_owner_id`) VALUES (NULL, 'Apache RTR', 'White Color', 'mh 12 AS 9548', 'Not Available', '12121212121212', '200', '1'), (NULL, 'Ramesh Dhawane', 'Greenish Color', 'mh 16 AA 45458', 'Not Available', '101215486582', '150', '2');
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////Insert Into BOOKING
+
+INSERT INTO `main_database`.`booking` (`id`, `startdate`, `starttime`, `enddate`, `endtime`, `bikeid`) VALUES (NULL, '2016-09-16', '06:27:19', '2016-09-18', '04:18:20', '1'), (NULL, '2016-09-16', '03:09:16', '2016-09-17', '12:27:11', '2');
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////Insert Into User
+
+INSERT INTO `main_database`.`user` (`id`, `name`, `address`, `mobile`, `email`, `username`, `password`, `doc_submitted`, `bookingId`, `orderId`) VALUES (NULL, 'Pradeep pandey', 'kothrud,pune', '9561313954', 'pradeeppandey@gmail.com', 'pradeep315', 'pradeep315', 'Adhar Card', '2', NULL);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+insert into order_details
+
+INSERT INTO `main_database`.`order_details` (`id`, `bookingid`, `totalfare`, `date`) VALUES (NULL, '1', '200', '2016-09-17'), (NULL, '2', '500', '2016-09-18');
