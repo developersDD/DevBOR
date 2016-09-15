@@ -43,7 +43,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 mysql_close($connection);
 ?>
 <?php
-
 function addOwners($ownerData){
     $query = "INSERT INTO `main_database`.`bike_owner`  (`id`, `name`, `address`, `email`, `mob`, `offc_address`) VALUES (NULL, '$ownerData->name', '$ownerData->address','$ownerData->email','$ownerData->mob','$ownerData->offcadd');";
     $result = mysql_query($query);
@@ -54,7 +53,6 @@ function addOwners($ownerData){
     }
     echo json_encode($response);
 }
-
 function updateOwner($ownerData){
     $query = "select * from `main_database`.`bike_owner` where id='$ownerData->id'";
     $result = mysql_query($query);
@@ -90,7 +88,6 @@ function deleteOwner($id){
     }
 
 }
-
 function addBooking($bookingData){
     $query = "INSERT INTO `main_database`.`booking`  (`id`, `startdate`, `starttime`, `enddate`, `endtime`, `bikeid`) VALUES (NULL, '$bookingData->startdate', '$bookingData->starttime','$bookingData->enddate','$bookingData->endtime','$bookingData->bikeid');";
     $result = mysql_query($query);
@@ -101,7 +98,6 @@ function addBooking($bookingData){
     }
     echo json_encode($response);
 }
-
 function updateBooking($bookingData){
 
     $query = "select * from `main_database`.`booking` where id='$bookingData->id'";
@@ -120,8 +116,7 @@ function updateBooking($bookingData){
         echo  json_encode("ERROR! No Such Booking Exists");
     }
 }
-function removeBooking($id)
-{
+function removeBooking($id){
     $query = "select * from `main_database`.`booking` where id='$id'";
     $result = mysql_query($query);
     if (mysql_fetch_object($result)) {
