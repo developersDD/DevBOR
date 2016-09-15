@@ -48,10 +48,11 @@ function addOwners($ownerData){
     $query = "INSERT INTO `main_database`.`bike_owner`  (`id`, `name`, `address`, `email`, `mob`, `offc_address`) VALUES (NULL, '$ownerData->name', '$ownerData->address','$ownerData->email','$ownerData->mob','$ownerData->offcadd');";
     $result = mysql_query($query);
     if($result){
-        echo  "Done! Owner added Sucessfully";
+        $response = array("status" => "1","msg" => "Success");
     }else{
-        echo  "ERROR! Cannot add  Owner";
+        $response = array("status" => "0","msg" => "Failed");
     }
+    echo json_encode($response);
 }
 
 function updateOwner($ownerData){
@@ -62,12 +63,13 @@ function updateOwner($ownerData){
         $query = "update `main_database`.`bike_owner` set name='$ownerData->name',address ='$ownerData->address',email='$ownerData->address',mob='$ownerData->mob',offc_address='$ownerData->offcadd' where id='$ownerData->id'";
         $result = mysql_query($query);
         if($result){
-            echo  "Done! Owner Updated Sucessfully";
+            $response = array("status" => "1","msg" => "Success");
         }else{
-            echo  "ERROR! Cannot Update Owner";
+            $response = array("status" => "0","msg" => "Failed");
         }
+        echo json_encode($response);
     }else{
-        echo  "ERROR! No Such Bike Owner Exists";
+        echo  json_encode("ERROR! No Such Bike Owner Exists");
     }
 }
 function deleteOwner($id){
@@ -77,14 +79,14 @@ function deleteOwner($id){
     if(mysql_fetch_object($result)){
         $query = "DELETE FROM `main_database`.`bike_owner` WHERE id='$id'";
         $result = mysql_query($query)or die("Query failed : " . mysql_error());
-        print_r($id);
         if($result){
-            echo  "Done! Owner Deleted";
+            $response = array("status" => "1","msg" => "Success");
         }else{
-            echo  "ERROR! No Such Owner Exist";
+            $response = array("status" => "0","msg" => "Failed");
         }
+        echo json_encode($response);
     }else{
-        echo  "ERROR! No Such Bike Owner Exists";
+        echo  json_encode("ERROR! No Such Bike Owner Exists");
     }
 
 }
@@ -93,10 +95,11 @@ function addBooking($bookingData){
     $query = "INSERT INTO `main_database`.`booking`  (`id`, `startdate`, `starttime`, `enddate`, `endtime`, `bikeid`) VALUES (NULL, '$bookingData->startdate', '$bookingData->starttime','$bookingData->enddate','$bookingData->endtime','$bookingData->bikeid');";
     $result = mysql_query($query);
     if($result){
-        echo  "Done! Booking done Sucessfully";
+        $response = array("status" => "1","msg" => "Success");
     }else{
-        echo  "ERROR! something went wrong!!!";
+        $response = array("status" => "0","msg" => "Failed");
     }
+    echo json_encode($response);
 }
 
 function updateBooking($bookingData){
@@ -108,12 +111,13 @@ function updateBooking($bookingData){
         $query = "update `main_database`.`booking` set startdate='$bookingData->startdate',starttime ='$bookingData->starttime',enddate='$bookingData->enddate',endtime='$bookingData->endtime',bikeid='$bookingData->bikeid' where id='$bookingData->id'";
         $result = mysql_query($query);
         if($result){
-            echo  "Done! Owner Updated Sucessfully";
+            $response = array("status" => "1","msg" => "Success");
         }else{
-            echo  "ERROR! Cannot Update Owner";
+            $response = array("status" => "0","msg" => "Failed");
         }
+        echo json_encode($response);
     }else{
-        echo  "ERROR! No Such Booking Exists";
+        echo  json_encode("ERROR! No Such Booking Exists");
     }
 }
 function removeBooking($id)
@@ -123,13 +127,14 @@ function removeBooking($id)
     if (mysql_fetch_object($result)) {
         $query = "DELETE FROM `main_database`.`booking` WHERE id='$id'";
         $result = mysql_query($query) or die("Query failed : " . mysql_error());
-        if ($result) {
-            echo "Done! Booking Removed";
-        } else {
-            echo "ERROR! No Such Booking Exist";
+        if($result){
+            $response = array("status" => "1","msg" => "Success");
+        }else{
+            $response = array("status" => "0","msg" => "Failed");
         }
+        echo json_encode($response);
     } else {
-        echo "ERROR! No Such Booking  Exists";
+        echo  json_encode("ERROR! No Such Booking Exists");
 
     }
 }
@@ -137,10 +142,11 @@ function addBike($bikeData){
     $query = "INSERT INTO `main_database`.`bike` (`id`, `name`, `description`, `number_plate`, `image`, `chasisnumber`, `rate_per_hr`, `bike_owner_id`) VALUES (NULL, '$bikeData->name', '$bikeData->description','$bikeData->number_plate','$bikeData->image','$bikeData->chasisnumber','$bikeData->rate_per_hr',NULL );";
     $result = mysql_query($query);
     if($result){
-        echo  "Done! Bike added Sucessfully";
+        $response = array("status" => "1","msg" => "Success");
     }else{
-        echo  "ERROR! Cannot add  Bike";
+        $response = array("status" => "0","msg" => "Failed");
     }
+    echo json_encode($response);
 }
 function updateBike($bikeData){
     $query = "select * from `main_database`.`bike` where id='$bikeData->id'";
@@ -150,10 +156,11 @@ function updateBike($bikeData){
         $query = "update `main_database`.`bike` set name='$bikeData->name',description ='$bikeData->description',number_plate='$bikeData->number_plate',image='$bikeData->image',chasisnumber='$bikeData->chasisnumber',rate_per_hr='$bikeData->rate_per_hr',bike_owner_id='$bikeData->bike_owner_id' where id='$bikeData->id'";
         $result = mysql_query($query);
         if($result){
-            echo  "Done! Owner Updated Sucessfully";
+            $response = array("status" => "1","msg" => "Success");
         }else{
-            echo  "ERROR! Cannot Update Owner";
+            $response = array("status" => "0","msg" => "Failed");
         }
+        echo json_encode($response);
     }
 }
 function deleteBike($id){
@@ -161,20 +168,22 @@ function deleteBike($id){
     $query = "DELETE FROM `main_database`.`bike` WHERE id='$id'";
     $result = mysql_query($query);print_r($result);
     if($result){
-        echo  "Done! Owner Deleted";
+        $response = array("status" => "1","msg" => "Success");
     }else{
-        echo  "ERROR! No Such Owner Exist";
+        $response = array("status" => "0","msg" => "Failed");
     }
+    echo json_encode($response);
 }
 
 function addOrder($orderData){
     $query = "INSERT INTO `main_database`.`order_details` (`id`, `bookingid`, `totalfare`, `date`) VALUES (NULL, '$orderData->bookingid', '$orderData->totalfare','$orderData->date');";
     $result = mysql_query($query);
     if($result){
-        echo  "Done! Bike added Sucessfully";
+        $response = array("status" => "1","msg" => "Success");
     }else{
-        echo  "ERROR! Cannot add  Bike";
+        $response = array("status" => "0","msg" => "Failed");
     }
+    echo json_encode($response);
 }
 
 function updateOrder($orderData){
@@ -185,10 +194,11 @@ function updateOrder($orderData){
         $query = "update `main_database`.`order_details` set bookingid='$orderData->bookingid',totalfare ='$orderData->totalfare',date='$orderData->date' where id='$orderData->id'";
         $result = mysql_query($query);
         if($result){
-            echo  "Done! Owner Updated Sucessfully";
+            $response = array("status" => "1","msg" => "Success");
         }else{
-            echo  "ERROR! Cannot Update Owner";
+            $response = array("status" => "0","msg" => "Failed");
         }
+        echo json_encode($response);
     }
 }
 
@@ -197,8 +207,9 @@ function deleteOrder($id){
     $query = "DELETE FROM `main_database`.`order_details` WHERE id='$id'";
     $result = mysql_query($query);
     if($result){
-        echo  "Done! Owner Deleted";
+        $response = array("status" => "1","msg" => "Success");
     }else{
-        echo  "ERROR! No Such Owner Exist";
+        $response = array("status" => "0","msg" => "Failed");
     }
+    echo json_encode($response);
 }
