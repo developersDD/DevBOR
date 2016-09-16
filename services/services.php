@@ -38,6 +38,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         deleteBike($_GET['bikeId']);
     }else if(isset($_GET['orderId'])){
         deleteOrder($_GET['orderId']);
+    }elseif(isset($_GET['getallbike'])){
+        getAllBike();
     }
 }
 mysql_close($connection);
@@ -207,4 +209,21 @@ function deleteOrder($id){
         $response = array("status" => "0","msg" => "Failed");
     }
     echo json_encode($response);
+}
+
+function getAllBike(){
+
+    $query = "select * from `main_database`.`bike`";
+    $result = mysql_query($query);
+    $arrayData = array();
+    if($result){
+        while($row = mysql_fetch_assoc($result)){
+            array_push($arrayData,$row);
+        }
+        echo json_encode($arrayData);
+    }else{
+        echo json_encode("No Data Found");
+    }
+
+
 }
