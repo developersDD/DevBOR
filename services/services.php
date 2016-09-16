@@ -1,7 +1,5 @@
 <?php
 include_once('configure.php');
-$databaseName = 'main_database';
-
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     $myPostData = json_decode($HTTP_RAW_POST_DATA);
     if(isset($myPostData->ownerDetails)){
@@ -28,6 +26,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         }else{
             addOrder($myPostData->orderDetails);
         }
+    }else if(isset($myPostData->userDetails)){
+        if(isset($myPostData->userDetails->id)){
+            updateUser($myPostData->userDetails);
+        }else{
+            addUser($myPostData->userDetails);
+        }
     }
 }else if($_SERVER['REQUEST_METHOD'] == "GET"){
     if(isset($_GET['ownerId'])){
@@ -40,6 +44,20 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         deleteOrder($_GET['orderId']);
     }elseif(isset($_GET['getallbike'])){
         getAllBike();
+    }elseif(isset($_GET['getbikebyid'])){
+        getBikeById($_GET['getbikebyid']);
+    }elseif(isset($_GET['getallowner'])){
+        getAllOwner();
+    }elseif(isset($_GET['getownerbyid'])){
+        getOwnerById($_GET['getownerbyid']);
+    }elseif(isset($_GET['getbyrph'])){
+        getBikeByRatePerHr($_GET['getbyrph']);
+    }elseif(isset($_GET['bikename'])){
+        getByBikeName($_GET['bikename']);
+    }elseif(isset($_GET['userid'])){
+        deleteUser($_GET['userid']);
+    }elseif(isset($_GET['autosearch'])){
+        autoComplete();
     }
 }
 mysql_close($connection);
@@ -224,6 +242,145 @@ function getAllBike(){
     }else{
         echo json_encode("No Data Found");
     }
+}
 
+function getBikeById($bikeId){
 
+    $query = "select * from `main_database`.`bike` where id='$bikeId'";
+    $result = mysql_query($query);
+    $arrayData = array();
+    if($result){
+        while($row = mysql_fetch_assoc($result)){
+            array_push($arrayData,$row);
+        }
+        echo json_encode($arrayData);
+    }else{
+        echo json_encode("No Data Found");
+    }
+
+}
+function getByBikeName($bikeName){
+    $query = "select * from `main_database`.`bike` where name LIKE '%$bikeName%' ORDER BY name ASC";
+    $result = mysql_query($query);
+
+    $arrayData = array();
+    if(mysql_fetch_assoc($result)){
+        while($row = mysql_fetch_assoc($result)){
+            array_push($arrayData,$row);
+        }
+        echo json_encode($arrayData);
+       // echo '<ul><li style="display:none"></li><li title="bike" class="">Apache</li><li title="bike" class=""> Apache</li><li title="bike">Apache</li></ul>';
+    }else{
+        echo json_encode("No Data Found");
+    }
+}
+
+function autoComplete(){
+
+    $query = "select id,name from `main_database`.`bike`;";
+    $result = mysql_query($query);
+    $data = "";
+    $data .='<ul>';
+    if(mysql_fetch_array($result)){
+        while($row = mysql_fetch_assoc($result)){
+            $id = $row['id'];
+            $name = $row['name'];
+            $data .= '<li style="display:none"></li><li title="bike" id="'.$id.'">"'.$name.'"</li>';
+        }
+        $data .='</ul>';
+        echo(trim($data));
+    }else{
+        echo json_encode("No Data Found");
+    }
+}
+function getBikeByRatePerHr($rph){
+    $query = "select * from `main_database`.`bike` where rate_per_hr BETWEEN 0 and $rph ORDER BY rate_per_hr ASC";
+    $result = mysql_query($query);
+    $arrayData = array();
+    if($result){
+        while($row = mysql_fetch_assoc($result)){
+            array_push($arrayData,$row);
+        }
+        echo json_encode($arrayData);
+    }else{
+        echo json_encode("No Data Found");
+    }
+
+}
+function getAllOwner(){
+    $query = "select * from `main_database`.`bike_owner`";
+    $result = mysql_query($query);
+    $arrayData = array();
+    if($result){
+        while($row = mysql_fetch_assoc($result)){
+            array_push($arrayData,$row);
+        }
+        echo json_encode($arrayData);
+    }else{
+        echo json_encode("No Data Found");
+    }
+
+}
+function getOwnerById($ownerId){
+
+    $query = "select * from `main_database`.`bike_owner` where id='$ownerId'";
+    $result = mysql_query($query);
+    $arrayData = array();
+    if($result){
+        while($row = mysql_fetch_assoc($result)){
+            array_push($arrayData,$row);
+        }
+        echo json_encode($arrayData);
+    }else{
+        echo json_encode("No Data Found");
+    }
+}
+
+function addUser($userData){
+
+    $query = "INSERT INTO `main_database`.`user` (`id`, `name`, `address`, `mobile`,`email`,`username`,`password`,`doc_submitted`,`bookingId`,`orderId`) VALUES (NULL, '$userData->name', '$userData->address','$userData->mobile','$userData->email','$userData->username','$userData->password','$userData->doc_submitted','$userData->bookingId',NULL);";
+    $result = mysql_query($query);
+    if($result){
+        $response = array("status" => "1","msg" => "Success");
+    }else{
+        $response = array("status" => "0","msg" => "Failed");
+    }
+    echo json_encode($response);
+}
+
+function updateUser($userData){
+    $query = "select * from `main_database`.`user` where id='$userData->id'";
+    $result = mysql_query($query);
+    $queryData = mysql_fetch_object($result);
+    if($queryData){
+        $query = "update `main_database`.`user` set name='$userData->name',address ='$userData->address',mobile='$userData->mobile',email = '$userData->email',username='$userData->username',password = '$userData->password',doc_submitted = '$userData->doc_submitted',bookingId ='$userData->bookingId' where id ='$userData->id';";
+        //print_r($query);die;
+        $result = mysql_query($query);
+        if($result){
+            $response = array("status" => "1","msg" => "Success");
+        }else{
+            $response = array("status" => "0","msg" => "Failed");
+        }
+        echo json_encode($response);
+    }else{
+        echo json_encode("No Such User Exist");
+    }
+}
+
+function deleteUser($userId){
+    $query = "select * from `main_database`.`user` where id='$userId'";
+    $result = mysql_query($query);
+    if (mysql_fetch_object($result)) {
+        $query = "DELETE FROM `main_database`.`user` WHERE id='$userId'";
+        $result = mysql_query($query) or die("Query failed : " . mysql_error());
+        if($result){
+            $response = array("status" => "1","msg" => "Success");
+        }else{
+            $response = array("status" => "0","msg" => "Failed");
+        }
+        echo json_encode($response);
+    } else {
+        echo  json_encode("ERROR! No Such User Exists");
+
+    }
 }
