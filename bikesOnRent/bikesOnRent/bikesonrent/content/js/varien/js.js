@@ -338,7 +338,7 @@ Varien.searchForm.prototype = {
         }
     },
 
-    initAutocomplete : function(url, destinationElement){
+    initAutocomplete: function (url, destinationElement) {
         new Ajax.Autocompleter(
             this.field,
             destinationElement,

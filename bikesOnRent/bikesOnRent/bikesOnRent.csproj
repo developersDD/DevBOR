@@ -132,9 +132,12 @@
     <Content Include="bikesonrent\content\js\ajaxlogin\jquery-ui-1-10-4.js" />
     <Content Include="bikesonrent\content\js\app.js" />
     <Content Include="bikesonrent\content\js\bootstrap.min.js" />
+    <Content Include="bikesonrent\content\js\boR-search.js" />
     <Content Include="bikesonrent\content\js\ccard\ccard.js" />
     <Content Include="bikesonrent\content\js\cherry-fixed-parallax.js" />
     <Content Include="bikesonrent\content\js\front.js" />
+    <Content Include="bikesonrent\content\js\bor.nl-gblajx.js" />
+    <Content Include="bikesonrent\content\js\bor.nl-gblcnfg.js" />
     <Content Include="bikesonrent\content\js\jquery.animateNumber.js" />
     <Content Include="bikesonrent\content\js\jquery.easydropdown.min.js" />
     <Content Include="bikesonrent\content\js\lib\enquire.js" />
@@ -162,6 +165,7 @@
     <Content Include="bikesonrent\content\js\tm-stick-up.js" />
     <Content Include="bikesonrent\content\js\varien\form.js" />
     <Content Include="bikesonrent\content\js\varien\js.js" />
+    <Content Include="bikesonrent\views\catalog-search-results.html" />
     <Content Include="bikesonrent\views\index.html" />
     <Content Include="Web.config" />
   </ItemGroup>

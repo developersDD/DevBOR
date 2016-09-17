@@ -1467,6 +1467,7 @@ Ajax.Responders.register({
   onCreate:   function() { Ajax.activeRequestCount++ },
   onComplete: function() { Ajax.activeRequestCount-- }
 });
+
 Ajax.Base = Class.create({
   initialize: function(options) {
     this.options = {
@@ -1551,6 +1552,9 @@ Ajax.Request = Class.create(Ajax.Base, {
       'X-Prototype-Version': Prototype.Version,
       'Accept': 'text/javascript, text/html, application/xml, text/xml, */*'
     };
+
+      //get rid of the X-JSON header error.
+    Ajax.Response.prototype._getHeaderJSON = Prototype.emptyFunction;
 
     if (this.method == 'post') {
       headers['Content-type'] = this.options.contentType +
@@ -1711,7 +1715,7 @@ Ajax.Response = Class.create({
   },
 
   _getHeaderJSON: function() {
-    var json = this.getHeader('X-JSON');
+      var json = this.getHeader('X-JSON');
     if (!json) return null;
     json = decodeURIComponent(escape(json));
     try {
@@ -1746,8 +1750,9 @@ Ajax.Updater = Class.create(Ajax.Request, {
 
     options = Object.clone(options);
     var onComplete = options.onComplete;
-    options.onComplete = (function(response, json) {
-      this.updateContent(response.responseText);
+    options.onComplete = (function (response, json) {
+        //this.updateContent(response.responseText);
+        alert(response.responseText);
       if (Object.isFunction(onComplete)) onComplete(response, json);
     }).bind(this);
 
@@ -1945,7 +1950,6 @@ Element.Methods = {
   },
 
   update: (function(){
-
     var SELECT_ELEMENT_INNERHTML_BUGGY = (function(){
       var el = document.createElement("select"),
           isBuggy = true;
@@ -2069,7 +2073,7 @@ Element.Methods = {
     return element;
   },
 
-  insert: function(element, insertions) {
+  insert: function (element, insertions) {
     element = $(element);
 
     if (Object.isString(insertions) || Object.isNumber(insertions) ||
