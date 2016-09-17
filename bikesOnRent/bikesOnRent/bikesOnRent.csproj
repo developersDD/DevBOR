@@ -108,6 +108,7 @@
     <Content Include="bikesonrent\content\images\bg_parallax1.jpg" />
     <Content Include="bikesonrent\content\images\bg_parallax2.jpg" />
     <Content Include="bikesonrent\content\images\bg_parallax3.jpg" />
+    <Content Include="bikesonrent\content\images\bike1.png" />
     <Content Include="bikesonrent\content\images\bottom_holder1.jpg" />
     <Content Include="bikesonrent\content\images\bottom_holder2.jpg" />
     <Content Include="bikesonrent\content\images\brand1.gif" />
@@ -165,6 +166,7 @@
     <Content Include="bikesonrent\content\js\tm-stick-up.js" />
     <Content Include="bikesonrent\content\js\varien\form.js" />
     <Content Include="bikesonrent\content\js\varien\js.js" />
+    <Content Include="bikesonrent\content\js\_boRmn_min.js" />
     <Content Include="bikesonrent\views\catalog-search-results.html" />
     <Content Include="bikesonrent\views\index.html" />
     <Content Include="Web.config" />

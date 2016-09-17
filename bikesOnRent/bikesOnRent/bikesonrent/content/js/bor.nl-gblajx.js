@@ -1,4 +1,6 @@
-﻿function jcnlGlobalAjax(mthd,dt,url,scscalbck,falcalbck) {
+﻿var mthdG = "GET";
+var mthdP = "POST";
+function jcnlGlobalAjax(mthd, dt, url, scscalbck, falcalbck) {
     var xmlhttp;
     if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();

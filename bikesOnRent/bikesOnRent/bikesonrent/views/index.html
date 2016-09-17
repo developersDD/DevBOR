@@ -68,7 +68,7 @@
     <script type="text/javascript" src="../content/js/varien/js.js"></script>
     <script type="text/javascript" src="../content/js/varien/form.js"></script>
     <script type="text/javascript" src="../content/js/mage/translate.js"></script>
-    <script type="text/javascript" src="../content/js/mage/cookies.js"></script>
+    <!--<script type="text/javascript" src="../content/js/mage/cookies.js"></script>-->
     <script type="text/javascript" src="../content/js/lib/modernizr.custom.min.js"></script>
     <script type="text/javascript" src="../content/js/lib/selectivizr.js"></script>
     <script type="text/javascript" src="../content/js/lib/matchMedia.js"></script>
@@ -88,7 +88,11 @@
     <script type="text/javascript" src="../content/js/owlcarousal/owl.carousel.js"></script>
     <script type="text/javascript" src="../content/js/cherry-fixed-parallax.js"></script>
     <script type="text/javascript" src="../content/js/jquery.easydropdown.min.js"></script>
-    <script type="text/javascript" src="../content/js/jquery.animateNumber.js"></script><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:300,300italic,400,400italic,500,500italic,700,700italic&amp;subset=latin,cyrillic" />
+    <script type="text/javascript" src="../content/js/jquery.animateNumber.js"></script>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:300,300italic,400,400italic,500,500italic,700,700italic&amp;subset=latin,cyrillic" />
+    <script src="../content/js/bor.nl-gblcnfg.js"></script>
+    <script src="../content/js/_boRmn_min.js"></script>
+    <script src="../content/js/bor.nl-gblajx.js"></script>
   </head>
 <body class="ps-static cms-index-index cms-home">
     <div class="wrapper ps-static en-lang-class">
@@ -140,7 +144,7 @@
                                             <li><a href="#" title="My Cart" class="top-link-cart">My Cart</a></li>
                                             <li><a href="#" title="Checkout" class="top-link-checkout">Checkout</a></li>
                                             <li><a href="customer/account/create/" title="Register" class="register-link">Register</a></li>
-                                            <li class=" last"><a href="customer/account/login/" title="Log In" class="log-in-link">Log In</a></li>
+                                            <li class=" last" id="txtlogin"><a href="customer/account/login/" title="Log In" class="log-in-link">Log In</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -169,12 +173,6 @@
                                             <button type="submit" title="Search" class="button search-button"><span><span>Search</span></span></button>
                                         </div>
                                         <div id="search_autocomplete" class="search-autocomplete"></div>
-                                        <script type="text/javascript">
-                                            //<![CDATA[
-                                            var searchForm = new Varien.searchForm('search_mini_form', 'search', '');
-                                            searchForm.initAutocomplete('http://192.168.0.11/BikesOnRent1/services/services.php', 'search_autocomplete');
-                                            //]]>
-                                        </script>
                                     </form>
                                 </div>
                             </div>
@@ -898,12 +896,6 @@
                                         <button type="submit" title="Search" class="button search-button"><span><span>Search</span></span></button>
                                     </div>
                                     <div id="search_autocomplete" class="search-autocomplete"></div>
-                                    <script type="text/javascript">
-                                        //<![CDATA[
-                                        var searchForm = new Varien.searchForm('search_mini_form', 'search', '');
-                                        searchForm.initAutocomplete('http://192.168.0.11/BikesOnRent1/services/services.php', 'search_autocomplete');
-                                        //]]>
-                                    </script>
                                 </form>
                             </div>
 
@@ -1285,75 +1277,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <script>
-                                            jQuery(document).ready(function () {
 
-                                                var owl = jQuery("#owl-new-products");
-
-                                                owl.owlCarousel({
-
-                                                    autoHeight: false,
-                                                    pagination: false,
-                                                    items: 4,
-                                                    itemsDesktop: [1199, 4],
-                                                    itemsDesktopSmall: [991, 3],
-                                                    itemsTablet: [768, 2],
-                                                    itemsMobile: [479, 1]
-
-                                                });
-
-
-                                                // ----- Slide down carousel script
-                                                function MageResize() {
-                                                    var bodyWidthTest = jQuery('.page').width();
-                                                    if (bodyWidthTest >= 1200) {
-
-                                                        jQuery(".new_products .index_item .prod_additional").removeAttr("style");
-                                                        var carousel_height = jQuery(".owl-wrapper").height();
-                                                        var prod_additional_height = jQuery(".index_item .prod_additional").outerHeight();
-                                                        var thumb_height = jQuery(".new_products .index_item .product-thumbs").outerHeight();
-                                                        var total_height = carousel_height + prod_additional_height + thumb_height;
-
-                                                        if (prod_additional_height != 0) {
-                                                            jQuery(".new_products .owl-new-products").height(carousel_height + 24);
-                                                            jQuery(".new_products .owl-wrapper-outer").height(carousel_height);
-                                                            jQuery(".new_products .index_item .prod_additional").outerHeight(0);
-                                                        }
-
-                                                        jQuery('.new_products .index_item').hover(function () {
-                                                            var bodyWidthTest2 = jQuery('.page').width();
-                                                            if (bodyWidthTest2 >= 1200) {
-                                                                jQuery(".new_products .owl-wrapper-outer").height(total_height + 8);
-                                                                jQuery(".prod_additional", this).outerHeight(prod_additional_height);
-                                                            }
-                                                        }, function () {
-                                                            var bodyWidthTest2 = jQuery('.page').width();
-                                                            if (bodyWidthTest2 >= 1200) {
-                                                                jQuery(".new_products .owl-wrapper-outer").height(carousel_height);
-                                                                jQuery(".prod_additional", this).outerHeight(0);
-                                                            }
-                                                        });
-
-                                                    } else {
-                                                        jQuery(".new_products .owl-new-products").removeAttr("style");
-                                                        jQuery(".new_products .owl-wrapper-outer").removeAttr("style");
-                                                        jQuery(".new_products .index_item .prod_additional").removeAttr("style");
-                                                    }
-                                                }
-
-                                                jQuery(window).bind('resize load', MageResize);
-
-
-                                                // Custom Navigation Events
-                                                jQuery(".next_new").click(function () {
-                                                    owl.trigger('owl.next');
-                                                })
-                                                jQuery(".prev_new").click(function () {
-                                                    owl.trigger('owl.prev');
-                                                })
-
-                                            });
-                                        </script>
                                         <div class="youama-ajaxlogin-loader">
                                         </div>
                                         <div class="youama-login-window">
@@ -1364,11 +1288,6 @@
                                                         <h3>Login Form </h3>
                                                     </div>
                                                     <div class="account-login">
-                                                        <script type="text/javascript">
-                                                            //<![CDATA[
-                                                            var dataForm = new VarienForm('login-form', true);
-                                                            //]]>
-                                                        </script>
                                                     </div>
                                                     <div class="youama-window-box first">
                                                         <div class="youama-window-content">
@@ -1495,18 +1414,6 @@
                                             <div class="ytmpa-nolicence">Terms and Conditions are required!</div>
                                             <div class="ytmpa-wronglogin">Email or Password is wrong!</div>
                                         </div>
-                                        <script type="text/javascript">
-                                            //<![CDATA[
-                                            jQuery(window).load(function () {
-                                                jQuery().youamaAjaxLogin({
-                                                    redirection: '0',
-                                                    profileUrl: 'http://livedemo00.template-help.com/magento_55698/custome/account/',
-                                                    autoShowUp: 'no',
-                                                    controllerUrl: 'http://192.168.0.11/BikesOnRent1/services/services.php'
-                                                });
-                                            });
-                                            //]]>
-                                        </script>
                                         <div class="std">
                                             <div class="clear"></div>
                                         </div>
@@ -1786,74 +1693,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <script>
-                                            jQuery(document).ready(function () {
-
-                                                var owl = jQuery("#owl-specials-products");
-
-                                                owl.owlCarousel({
-
-                                                    autoHeight: false,
-                                                    pagination: false,
-                                                    items: 4,
-                                                    itemsDesktop: [1199, 4],
-                                                    itemsDesktopSmall: [991, 3],
-                                                    itemsTablet: [768, 2],
-                                                    itemsMobile: [479, 1]
-
-                                                });
-
-
-                                                // ----- Slide down carousel script
-                                                function MageResize2() {
-                                                    var bodyWidthTest = jQuery('.page').width();
-                                                    if (bodyWidthTest >= 1200) {
-
-                                                        jQuery(".specials_products .index_item .prod_additional").removeAttr("style");
-                                                        var carousel_height = jQuery(".specials_products .owl-wrapper").height();
-                                                        var prod_additional_height = jQuery(".specials_products .index_item .prod_additional").outerHeight();
-                                                        var thumb_height = jQuery(".specials_products .index_item .product-thumbs").outerHeight();
-                                                        var total_height = carousel_height + prod_additional_height + thumb_height;
-                                                        if (prod_additional_height != 0) {
-                                                            jQuery(".specials_products .owl-specials-products").height(carousel_height + 20);
-                                                            jQuery(".specials_products .owl-wrapper-outer").height(carousel_height);
-                                                            jQuery(".specials_products .index_item .prod_additional").outerHeight(0);
-                                                        }
-
-                                                        jQuery('.specials_products .index_item').hover(function () {
-                                                            var bodyWidthTest2 = jQuery('.page').width();
-                                                            if (bodyWidthTest2 >= 1200) {
-                                                                jQuery(".specials_products .owl-wrapper-outer").height(total_height);
-                                                                jQuery(".prod_additional", this).outerHeight(prod_additional_height);
-                                                            }
-                                                        }, function () {
-                                                            var bodyWidthTest2 = jQuery('.page').width();
-                                                            if (bodyWidthTest2 >= 1200) {
-                                                                jQuery(".specials_products .owl-wrapper-outer").height(carousel_height);
-                                                                jQuery(".prod_additional", this).outerHeight(0);
-                                                            }
-                                                        });
-
-                                                    } else {
-                                                        jQuery(".specials_products .owl-specials-products").removeAttr("style");
-                                                        jQuery(".specials_products .owl-wrapper-outer").removeAttr("style");
-                                                        jQuery(".specials_products .index_item .prod_additional").removeAttr("style");
-                                                    }
-                                                }
-
-                                                jQuery(window).bind('resize load', MageResize2);
-
-
-                                                // Custom Navigation Events
-                                                jQuery(".next_specials").click(function () {
-                                                    owl.trigger('owl.next');
-                                                })
-                                                jQuery(".prev_specials").click(function () {
-                                                    owl.trigger('owl.prev');
-                                                })
-
-                                            });
-                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -2021,42 +1860,5 @@ The variety of products available at our store at the moment is vast, but we sti
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        //<![CDATA[
-        var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail2');
-        //]]>
-    </script>
-    <script>
-        jQuery(document).ready(function () {
-
-            var newsPopup = jQuery('#newsletterpopup');
-            var newsPopupClose = newsPopup.find('.close');
-            var showNewsPopup = sessionStorage.getItem("showNewsPopup");
-            if (showNewsPopup != '0') {
-                newsPopup.modal();
-                disable_scroll();
-            };
-
-            newsPopupClose.click(function () {
-                sessionStorage.setItem("showNewsPopup", '0');
-                enable_scroll();
-            });
-            jQuery('body').click(function () {
-                enable_scroll();
-            });
-
-        });
-
-        function disable_scroll() {
-            jQuery('body').bind('touchmove', function (e) { e.preventDefault() });
-        }
-
-        function enable_scroll() {
-            jQuery('body').unbind('touchmove');
-        }
-    </script>
-    <script type="text/javascript">//<![CDATA[
-        var Translator = new Translate([]);
-        //]]></script>
 </body>
 </html>

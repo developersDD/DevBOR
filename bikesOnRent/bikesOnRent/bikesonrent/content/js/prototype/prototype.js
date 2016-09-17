@@ -1751,8 +1751,7 @@ Ajax.Updater = Class.create(Ajax.Request, {
     options = Object.clone(options);
     var onComplete = options.onComplete;
     options.onComplete = (function (response, json) {
-        //this.updateContent(response.responseText);
-        alert(response.responseText);
+        this.updateContent(response.responseText);
       if (Object.isFunction(onComplete)) onComplete(response, json);
     }).bind(this);
 

@@ -1,14 +1,12 @@
 /**
- * YouAMA.com
+ * RentalBikes
  *
  * NOTICE OF LICENSE
  *
 /* This source file is subject to the user login and registration.*/
 (function($) {
     $.fn.youamaAjaxLogin = function(options) {
-
         var opts = $.extend({}, $.fn.youamaAjaxLogin.defaults, options);
-
         return start();
 
         /**
@@ -240,7 +238,6 @@
          */
         function validateDatas(windowName) {
             opts.errors = '';
-
             // Register
             if (windowName == 'register') {
                 // There is no last name
@@ -283,13 +280,13 @@
 
             // Login
             } else if (windowName == 'login') {
-                // There is no email address
-                if (opts.email.length < 1) {
-                    opts.errors = opts.errors + 'noemail,'
-                // It is not email address
-                } else if (validateEmail(opts.email) != true) {
-                    opts.errors = opts.errors + 'wrongemail,'
-                }
+                //// There is no email address
+                //if (opts.email.length < 1) {
+                //    opts.errors = opts.errors + 'noemail,'
+                //// It is not email address
+                //} else if (validateEmail(opts.email) != true) {
+                //    opts.errors = opts.errors + 'wrongemail,'
+                //}
 
                 // There is no password
                 if (opts.password.length < 1) {
@@ -369,10 +366,8 @@
                 .text('');
             $('.youama-' + windowName + '-window .youama-ajaxlogin-error')
                 .hide();
-
             var errorArr = new Array();
             errorArr = errors.split(',');
-
             var length = errorArr.length - 1;
 
             for (var i = 0; i < length; i++) {
@@ -381,7 +376,6 @@
                 $('.youama-' + windowName + '-window .err-' + errorArr[i])
                     .text(errorText);
             }
-
             $('.youama-' + windowName + '-window .youama-ajaxlogin-error')
                 .fadeIn();
         }
@@ -390,23 +384,20 @@
          * Ajax call for registration.
          */
         function callAjaxControllerRegistration() {
+            var mregdet = new Object();
+            var regdet = new Object();
+            mregdet.name = "Rohan";
+            mregdet.address = "Shirdi";
+            mregdet.email = "rbk@gmail.com";
+            mregdet.mob = "9858985878";
+            mregdet.offcadd = "Shirdi";
+            regdet.ownerDetails = ownerDetails1;
+            var ownerDetails = JSON.stringify(d);
             // If there is no another ajax calling
             if (opts.stop != true) {
-
                 opts.stop = true;
-
                 // Load the Loader
                 animateLoader('register', 'start');
-                var d = new Object();
-                var ownerDetails1 = new Object();
-                ownerDetails1.name = "Rohan";
-                ownerDetails1.address = "Shirdi";
-                ownerDetails1.email = "rbk@gmail.com";
-                ownerDetails1.mob = "9858985878";
-                ownerDetails1.offcadd = "Shirdi";
-                d.ownerDetails = ownerDetails1;
-                var ownerDetails = JSON.stringify(d);
-                alert(ownerDetails);
                 // Send data
                 var ajaxRegistration = jQuery.ajax({
                     url: opts.controllerUrl,
@@ -427,7 +418,6 @@
                 });
                 // Get data
                 ajaxRegistration.done(function (msg) {
-                    alert(msg);
                     // If there is error
                     if (msg != 'success' && msg != 'confirm') {
                         setError(msg, 'register');
@@ -461,50 +451,53 @@
          * Ajax call for login.
          */
         function callAjaxControllerLogin() {
+            var lgdt = new Object();
+            var lgdt1 = new Object();
+            lgdt1.username = opts.email;
+            lgdt1.password = opts.password;
+            lgdt.loginDetails = lgdt1;
+            var loginDetails = JSON.stringify(lgdt);
             // If there is no another ajax calling
             if (opts.stop != true){
-
                 opts.stop = true;
-
                 // Load the Loader
                 animateLoader('login', 'start');
-
                 // Send data
-                var ajaxRegistration = jQuery.ajax({
-                    url: opts.controllerUrl,
-                    type: 'POST',
-                    data: {
-                    ajax : 'login',
-                        email : opts.email,
-                        password : opts.password
-                    },
-                    dataType: "html"
-                });
-                // Get data
-                ajaxRegistration.done(function(msg) {
-                    // // If there is error
-                    if (msg != 'success'){
-                        setError(msg, 'login');
-                    // If everything are OK
-                    } else {
-                        opts.stop = false;
-                        animateCloseWindow('login', false, true);
-                        // Redirect
-                        if (opts.redirection == '1') {
-                            window.location = opts.profileUrl;
-                        } else {
-                            window.location.reload();
-                        }
-                    }
-                    animateLoader('login', 'stop');
-                    opts.stop = false;
-                });
-                // Error on ajax call
-                ajaxRegistration.fail(function(jqXHR, textStatus, errorThrown) {
-                    opts.stop = false;
-                    animateLoader('login', 'stop');
-                });
+                jcnlGlobalAjax(mthdP,loginDetails,opts.controllerUrl,callAjaxControllerLoginSucess,callAjaxLRControllerFailed);
             }
+        }
+
+        /**
+        * success call for login.
+        */
+        function callAjaxControllerLoginSucess(msg) {
+            var response = JSON.parse(msg);
+            // // If there is error
+            if (response.msg != 'Success') {
+                setError('wronglogin,', 'login');
+                // If everything are OK
+            } else {
+                opts.stop = false;
+                animateCloseWindow('login', false, true);
+                // Redirect
+                if (opts.redirection == '1') {
+                    window.location = opts.profileUrl;
+                    sessionStorage.setItem("user", response.userId);
+                } else {
+                    window.location.reload();
+                    sessionStorage.setItem("user", response.userId);
+                }
+            }
+            animateLoader('login', 'stop');
+            opts.stop = false;
+        }
+
+        /**
+        * failure call for login/registration.
+        */
+        function callAjaxLRControllerFailed(msg){
+            opts.stop = false;
+            animateLoader('login', 'stop');
         }
 
         /**
@@ -514,7 +507,6 @@
             var isMobile_2 = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEmobile|Windows Phone|WPDesktop/i.test(navigator.userAgent);
             if (!isMobile_2) {
                 closeInClose();
-
                 // On resize event
                 $(window).resize(function() {
                     closeInClose();
