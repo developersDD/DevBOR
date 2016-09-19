@@ -59,6 +59,7 @@
   <ItemGroup>
     <Content Include="bikesonrent\content\css\ajaxlogin\ajaxlogin.css" />
     <Content Include="bikesonrent\content\css\bootstrap.css" />
+    <Content Include="bikesonrent\content\css\boR.nl-ndx.css" />
     <Content Include="bikesonrent\content\css\easydropdown.css" />
     <Content Include="bikesonrent\content\css\font-awesome.css" />
     <Content Include="bikesonrent\content\css\googlemap\tm_googlemap.css" />
@@ -126,6 +127,7 @@
     <Content Include="bikesonrent\content\images\ibera_bicycle_seatpost-mounted_commuter_carrier_ib-ra1_1.png" />
     <Content Include="bikesonrent\content\images\loader.gif" />
     <Content Include="bikesonrent\content\images\logo.png" />
+    <Content Include="bikesonrent\content\images\opc-ajax-loader.gif" />
     <Content Include="bikesonrent\content\images\tenn_mens_8_panel_cycling_shorts_with_professional_moulded_pad_6.png" />
     <Content Include="bikesonrent\content\images\the_friendly_swede_alloy_bicycle_water_bottle_cage_2.png" />
     <Content Include="bikesonrent\content\images\vilano_blackjack_2.0_29er_mountain_bike_mtb_with_29-inch_wheels_1.png" />
@@ -134,6 +136,7 @@
     <Content Include="bikesonrent\content\js\app.js" />
     <Content Include="bikesonrent\content\js\bootstrap.min.js" />
     <Content Include="bikesonrent\content\js\boR-search.js" />
+    <Content Include="bikesonrent\content\js\boR.nl-ndx.js" />
     <Content Include="bikesonrent\content\js\ccard\ccard.js" />
     <Content Include="bikesonrent\content\js\cherry-fixed-parallax.js" />
     <Content Include="bikesonrent\content\js\front.js" />

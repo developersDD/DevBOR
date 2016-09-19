@@ -3,7 +3,7 @@
 <!--<![endif]-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Bikes On Rent | Search</title>
+    <title id="mainPageTitle">Search results for : 'Bikes'</title>
     <meta http-equiv="Cache-Control" content="max-age=3600" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
@@ -90,9 +90,11 @@
     <script type="text/javascript" src="../content/js/cherry-fixed-parallax.js"></script>
     <script type="text/javascript" src="../content/js/jquery.easydropdown.min.js"></script>
     <script type="text/javascript" src="../content/js/jquery.animateNumber.js"></script>
-    <script src="../content/js/boR-search.js"></script>
-    <script src="../content/js/bor.nl-gblajx.js"></script>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:300,300italic,400,400italic,500,500italic,700,700italic&amp;subset=latin,cyrillic" />
+    <script src="../content/js/bor.nl-gblcnfg.js"></script>
+    <script src="../content/js/_boRmn_min.js"></script>
+    <script src="../content/js/bor.nl-gblajx.js"></script>
+    <script src="../content/js/boR-search.js"></script>
 </head>
 <body class=" catalogsearch-result-index">
     <div class="wrapper">
@@ -155,7 +157,7 @@
                 <div class="header-tile">
                     <div class="container">
                         <div class="page-header-container">
-                            <a class="logo" href="#">
+                            <a class="logo" href="index.html">
                                 <img src="../content/images/logo.png" alt="Magento Commerce" />
                             </a>
 
@@ -171,12 +173,6 @@
                                             <button type="submit" title="Search" class="button search-button"><span><span>Search</span></span></button>
                                         </div>
                                         <div id="search_autocomplete" class="search-autocomplete"></div>
-                                        <script type="text/javascript">
-                                            //<![CDATA[
-                                            var searchForm = new Varien.searchForm('search_mini_form', 'search', '');
-                                            searchForm.initAutocomplete('http://192.168.0.11/BikesOnRent1/services/services.php', 'search_autocomplete');
-                                            //]]>
-                                        </script>
                                     </form>
                                 </div>
                             </div>
@@ -893,19 +889,13 @@
                             </a>
 
                             <div id="header-search" class="skip-content">
-                                <form id="Form1" action="catalog-search-results.html" method="get">
+                                <form id="search_mini_form" action="catalog-search-results.html" method="get">
                                     <div class="input-box">
                                         <label for="search">Search:</label>
-                                        <input id="search1" type="search" name="bikesonrent" value="" class="input-text required-entry" maxlength="128" placeholder="Search entire store here..." />
+                                        <input id="search" type="search" name="bikename" value="" class="input-text required-entry" maxlength="128" placeholder="Search entire store here..." />
                                         <button type="submit" title="Search" class="button search-button"><span><span>Search</span></span></button>
                                     </div>
-                                    <div id="Div1" class="search-autocomplete"></div>
-                                    <script type="text/javascript">
-                                        //<![CDATA[
-                                        var searchForm = new Varien.searchForm('search_mini_form', 'search', '');
-                                        searchForm.initAutocomplete('http://192.168.0.11/BikesOnRent1/services/services.php', 'search_autocomplete');
-                                        //]]>
-                                    </script>
+                                    <div id="search_autocomplete" class="search-autocomplete"></div>
                                 </form>
                             </div>
 
@@ -957,7 +947,7 @@
                                 <span class="fa fa-angle-right"></span>
                             </li>
                             <li class="search">
-                                <strong>Search results for: <span>'Bikes'</span></strong>
+                                <strong>Search results for<span id="pageTitle">Bikes</span></strong>
                             </li>
                         </ul>
                     </div>
@@ -1010,8 +1000,8 @@
                                                                     <span>Login </span>
                                                                 </span>
                                                             </button>
-                                                            <p id="y-to-register" class="yoauam-switch-window" style="text-decoration:none">
-                                                               <span>Not registered yet?</span>&nbsp;&nbsp; <span style="text-decoration:underline">Register here!</span>
+                                                            <p id="y-to-register" class="yoauam-switch-window" style="text-decoration: none">
+                                                                <span>Not registered yet?</span>&nbsp;&nbsp; <span style="text-decoration: underline">Register here!</span>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -1038,7 +1028,7 @@
                                                                 <input type="text" placeholder="First Name" id="youama-firstname" name="youama-firstname" value="" />
                                                                 <div class="youama-ajaxlogin-error err-firstname err-nofirstname err-dirtyfirstname"></div>
                                                             </div>
-                                                           
+
                                                             <div class="input-fly youama-showhideme input-lastname">
                                                                 <label for="youama-lastname">Last Name <span>*</span></label>
                                                                 <input type="text" placeholder="Last Name" id="youama-lastname" name="youama-lastname" value="" />
@@ -1116,20 +1106,8 @@
                                             <div class="ytmpa-nolicence">Terms and Conditions are required!</div>
                                             <div class="ytmpa-wronglogin">Email or Password is wrong!</div>
                                         </div>
-                                        <script type="text/javascript">
-                                            //<![CDATA[
-                                            jQuery(window).load(function () {
-                                                jQuery().youamaAjaxLogin({
-                                                    redirection: '0',
-                                                    profileUrl: 'http://livedemo00.template-help.com/magento_55698/custome/account/',
-                                                    autoShowUp: 'no',
-                                                    controllerUrl: 'http://192.168.0.11/BikesOnRent1/services/services.php'
-                                                });
-                                            });
-                                            //]]>
-                                        </script>
-                                        <div class="page-title">
-                                            <h1>Search results for 'Bikes'</h1>
+            <div class="page-title">
+                                            <h1>Search results for '<span id="containerPageTitle">Bikes</span>'</h1>
                                         </div>
 
                                         <!-- main products container-->
@@ -1461,116 +1439,116 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="footer-container">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="brands_list">
-                                <ul>
-                                    <li><a href="#">
-                                        <img src="../content/images/brand1.gif" alt="" /></a></li>
-                                    <li><a href="#">
-                                        <img src="../content/images/brand2.gif" alt="" /></a></li>
-                                    <li><a href="#">
-                                        <img src="../content/images/brand3.gif" alt="" /></a></li>
-                                    <li><a href="#">
-                                        <img src="../content/images/brand4.gif" alt="" /></a></li>
-                                    <li><a href="#">
-                                        <img src="../content/images/brand5.gif" alt="" /></a></li>
-                                    <li><a href="#">
-                                        <img src="../content/images/brand6.gif" alt="" /></a></li>
-                                </ul>
+        </div>
+    </div>
+    <div class="footer-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="brands_list">
+                        <ul>
+                            <li><a href="#">
+                                <img src="../content/images/brand1.gif" alt="" /></a></li>
+                            <li><a href="#">
+                                <img src="../content/images/brand2.gif" alt="" /></a></li>
+                            <li><a href="#">
+                                <img src="../content/images/brand3.gif" alt="" /></a></li>
+                            <li><a href="#">
+                                <img src="../content/images/brand4.gif" alt="" /></a></li>
+                            <li><a href="#">
+                                <img src="../content/images/brand5.gif" alt="" /></a></li>
+                            <li><a href="#">
+                                <img src="../content/images/brand6.gif" alt="" /></a></li>
+                        </ul>
+                    </div>
+                    <div class="footer">
+                        <p id="back-top"><a href="#top"><span></span></a></p>
+                        <div class="footer_info">
+                            <div class="f_logo">
+                                <a href="index.html">
+                                    <img src="../content/images/f_logo.png" alt="" /></a>
                             </div>
-                            <div class="footer">
-                                <p id="back-top"><a href="#top"><span></span></a></p>
-                                <div class="footer_info">
-                                    <div class="f_logo">
-                                        <a href="#">
-                                            <img src="../content/images/f_logo.png" alt="" /></a>
-                                    </div>
-                                    <p>
-                                        Our store is more than just another average online retailer. We sell not only top quality products, but give our customers a positive online shopping experience. Forget about struggling to do everything at once: taking care of the family, running your business, walking your dog, cleaning the house, doing the shopping, etc. Purchase the goods you need every day or just like in a few clicks or taps, depending on the device you use to access the Internet. We work to make your life more enjoyable.
+                            <p>
+                                Our store is more than just another average online retailer. We sell not only top quality products, but give our customers a positive online shopping experience. Forget about struggling to do everything at once: taking care of the family, running your business, walking your dog, cleaning the house, doing the shopping, etc. Purchase the goods you need every day or just like in a few clicks or taps, depending on the device you use to access the Internet. We work to make your life more enjoyable.
 The variety of products available at our store at the moment is vast, but we still continue to widen our assortment. We monitor the relevant market niche on regular basis to keep our prices competitive. Buying form us you can be sure that you’ll get the product you have offered quickly and hassle-free. We value our reputation of the trustworthy merchant and never upset our clients.
-                                    </p>
+                            </p>
+                        </div>
+                        <div class="footer-cols-wrapper">
+                            <div class="footer-col">
+                                <h4>Information</h4>
+                                <div class="footer-col-content">
+                                    <ul>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Customer Service</a></li>
+                                        <li><a href="#">Template Settings</a></li>
+                                        <li class="last privacy"><a href="#">Privacy Policy</a></li>
+                                    </ul>
+                                    <div class="links">
+                                        <ul>
+                                            <li class="first"><a href="#" title="Site Map">Site Map</a></li>
+                                            <li><a href="#" title="Search Terms">Search Terms</a></li>
+                                            <li><a href="#" title="Advanced Search">Advanced Search</a></li>
+                                            <li><a href="#" title="Orders and Returns">Orders and Returns</a></li>
+                                            <li class=" last"><a href="#" title="Contact Us">Contact Us</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="footer-cols-wrapper">
-                                    <div class="footer-col">
-                                        <h4>Information</h4>
-                                        <div class="footer-col-content">
-                                            <ul>
-                                                <li><a href="#">About Us</a></li>
-                                                <li><a href="#">Customer Service</a></li>
-                                                <li><a href="#">Template Settings</a></li>
-                                                <li class="last privacy"><a href="#">Privacy Policy</a></li>
-                                            </ul>
-                                            <div class="links">
-                                                <ul>
-                                                    <li class="first"><a href="#" title="Site Map">Site Map</a></li>
-                                                    <li><a href="#" title="Search Terms">Search Terms</a></li>
-                                                    <li><a href="#" title="Advanced Search">Advanced Search</a></li>
-                                                    <li><a href="#" title="Orders and Returns">Orders and Returns</a></li>
-                                                    <li class=" last"><a href="#" title="Contact Us">Contact Us</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer-col">
-                                        <h4>Why buy from us</h4>
-                                        <div class="footer-col-content">
-                                            <ul>
-                                                <li><a href="#">Shipping & Returns</a></li>
-                                                <li><a href="#">Secure Shopping</a></li>
-                                                <li><a href="#">International Shipping</a></li>
-                                                <li><a href="#">Affiliates</a></li>
-                                                <li><a href="#">Group Sales</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="footer-col">
-                                        <h4>My account</h4>
-                                        <div class="footer-col-content">
-                                            <ul>
-                                                <li><a href="#">Sign In</a></li>
-                                                <li><a href="#">View Cart</a></li>
-                                                <li><a href="#">My Wishlist</a></li>
-                                                <li><a href="#">Track My Order</a></li>
-                                                <li><a href="#">Help</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="footer-col last">
-                                        <h4>Contacts</h4>
-                                        <div class="footer-col-content">
-                                            <div class="footer_address">
-                                                8901 Marmora Road,<br />
-                                                Glasgow, D04 89GR
+                            </div>
+                            <div class="footer-col">
+                                <h4>Why buy from us</h4>
+                                <div class="footer-col-content">
+                                    <ul>
+                                        <li><a href="#">Shipping & Returns</a></li>
+                                        <li><a href="#">Secure Shopping</a></li>
+                                        <li><a href="#">International Shipping</a></li>
+                                        <li><a href="#">Affiliates</a></li>
+                                        <li><a href="#">Group Sales</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="footer-col">
+                                <h4>My account</h4>
+                                <div class="footer-col-content">
+                                    <ul>
+                                        <li><a href="#">Sign In</a></li>
+                                        <li><a href="#">View Cart</a></li>
+                                        <li><a href="#">My Wishlist</a></li>
+                                        <li><a href="#">Track My Order</a></li>
+                                        <li><a href="#">Help</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="footer-col last">
+                                <h4>Contacts</h4>
+                                <div class="footer-col-content">
+                                    <div class="footer_address">
+                                        8901 Marmora Road,<br />
+                                        Glasgow, D04 89GR
                                                 <span class="tel">1(234) 567-8901</span>
-                                            </div>
-                                        </div>
                                     </div>
-                                    <div class="clear"></div>
                                 </div>
-                                <div class="clear"></div>
-                                <div class="footer_bottom">
-                                    <address>
-                                        &copy;
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="footer_bottom">
+                            <address>
+                                &copy;
                                         <script type="text/javascript">var mdate = new Date(); document.write(mdate.getFullYear());</script>
-                                        Magento Demo Store. All Rights Reserved.
-                                    </address>
-                                    <div class="socials">
-                                        <a href="#"><span class="fa fa-facebook"></span></a>
-                                        <a href="#"><span class="fa fa-twitter"></span></a>
-                                        <a href="#"><span class="fa fa-google-plus"></span></a>
-                                    </div>
-                                </div>
+                                Magento Demo Store. All Rights Reserved.
+                            </address>
+                            <div class="socials">
+                                <a href="#"><span class="fa fa-facebook"></span></a>
+                                <a href="#"><span class="fa fa-twitter"></span></a>
+                                <a href="#"><span class="fa fa-google-plus"></span></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="newsletterpopup" aria-hidden="true" id="newsletterpopup">
         <div class="modal-dialog">

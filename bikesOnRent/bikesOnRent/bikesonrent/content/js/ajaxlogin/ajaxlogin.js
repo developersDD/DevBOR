@@ -104,7 +104,7 @@
                 return false;
             });
             // Close login window by user
-            $('.youama-login-window .close').click(function() {
+            $('.youama-login-window .close').click(function () {
                 animateCloseWindow('login', true, true);
                 $('div.shadow').removeClass('active-form');
                  $('body').removeClass('ind');

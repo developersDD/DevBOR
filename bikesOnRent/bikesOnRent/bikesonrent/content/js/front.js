@@ -6,31 +6,6 @@
 $j(document).ready(function (){
 
     // ==============================================
-    // Header Switchers (language/currency)
-    // ==============================================
-
-
-    $j('.header-button, .switch-show').not('.top-login').on("click", function(e){
-            var ul=$j(this).find('ul')
-            if(ul.is(':hidden'))
-             ul.slideDown()
-             ,$j(this).addClass('active')
-            else
-             ul.slideUp()
-             ,$j(this).removeClass('active')
-             $j('.header-button, .switch-show').not(this).removeClass('active'),
-             $j('.header-button, .switch-show').not(this).find('ul').slideUp()
-             $j('.header-button ul li, .switch-show ul li').click(function(e){
-                 e.stopPropagation(); 
-                });
-                return false
-        });
-        $j(document).on('click',function(){ 
-            $j('.header-button, .switch-show').removeClass('active').find('ul').slideUp();
-        });
-
-
-    // ==============================================
     // Back To Top
     // ==============================================
         $j(function () {
@@ -70,7 +45,6 @@ $j(document).ready(function (){
         jQuery('li a.top-link-cart, li a.register-link', '.top-links-inline').parent().remove();
 
     }
-
 
     // ==============================================
     // Superfish Menu
