@@ -1,5 +1,6 @@
 <?php
 include_once('configure.php');
+
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     $myPostData = json_decode($HTTP_RAW_POST_DATA);
     if(isset($myPostData->ownerDetails)){
@@ -13,7 +14,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             updateBooking($myPostData->bookingDetails);
         }else{
             checkBooking($myPostData->bookingDetails);
-            //addBooking($myPostData->bookingDetails);
         }
     }else if(isset($myPostData->bikeDetails)){
         if(isset($myPostData->bikeDetails->id)){
@@ -64,15 +64,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     }elseif(isset($_GET['getuserbyid'])){
         getUserById($_GET['getuserbyid']);
     }elseif(isset($_GET['startdate']) && isset($_GET['enddate'])){
-        checkBikeAailability($_GET['startdate'],$_GET['enddate']);
+        checkBikeAailability($_GET['startdate'],$_GET['enddate'],$_GET['starttime']);
+    }elseif(isset($_GET['id']) && isset($_GET['email'])){
+        forgetPassword($_GET['id'],$_GET['email']);
     }
-
 }
 mysql_close($connection);
 ?>
 <?php
 function loginUser($loginData){
-    $query = "select * from user where username = '$loginData->username' AND password = '$loginData->password';";
+    $query = "select * from user where (username = '$loginData->username' OR email ='$loginData->username') AND password = '$loginData->password';";
     $result = mysql_query($query);
     $userId = mysql_fetch_row($result)[0];
     if(!$userId == NULL){
@@ -85,7 +86,7 @@ function loginUser($loginData){
 function addOwners($ownerData){
     $query = "INSERT INTO `main_database`.`bike_owner`  (`id`, `name`, `address`, `email`, `mob`, `offc_address`) VALUES (NULL, '$ownerData->name', '$ownerData->address','$ownerData->email','$ownerData->mob','$ownerData->offcadd');";
     $result = mysql_query($query);
-    if(mysql_num_rows($result) > 0){
+    if(mysql_affected_rows() > 0){
         $response = array("status" => "1","msg" => "Success");
     }else{
         $response = array("status" => "0","msg" => "Failed");
@@ -132,21 +133,25 @@ function checkBooking($bookingData){
     $result = mysql_query($query);
     $flag = false;
     $arrayData = array();
-    while($data = mysql_fetch_assoc($result)) {
-        array_push($arrayData,$data);
-    }
-    foreach($arrayData as $queryData){
-        if ((strtotime($bookingData->startdate) > strtotime($queryData['startdate'])) && (strtotime($bookingData->startdate) > strtotime($queryData['enddate']))) {
-            $flag = true;
-        } else {
-            if (strtotime($bookingData->startdate) == strtotime($queryData['enddate'])) {
-                if ((strtotime($bookingData->starttime) > strtotime($queryData['endtime']))) {
-                    $flag = true;
+    if(mysql_num_rows($result)>0){
+        while($data = mysql_fetch_assoc($result)) {
+            array_push($arrayData,$data);
+        }
+        foreach($arrayData as $queryData){
+            if ((strtotime($bookingData->startdate) > strtotime($queryData['startdate'])) && (strtotime($bookingData->startdate) > strtotime($queryData['enddate']))) {
+                $flag = true;
+            } else {
+                if (strtotime($bookingData->startdate) == strtotime($queryData['enddate'])) {
+                    if ((strtotime($bookingData->starttime) > strtotime($queryData['endtime']))) {
+                        $flag = true;
+                    }
                 }
             }
         }
-      }
-  if($flag){
+    }else{
+        $flag = true;
+    }
+    if($flag){
         addBooking($bookingData);
     }else{
         $response = array("status" => "0", "msg" => "Failed,Bike Is Already Booked");
@@ -154,7 +159,7 @@ function checkBooking($bookingData){
     }
 }
 function addBooking($bookingData){
-    $query = "INSERT INTO `main_database`.`booking`  (`id`, `startdate`, `starttime`, `enddate`, `endtime`, `bikeid`) VALUES (NULL, '$bookingData->startdate', '$bookingData->starttime','$bookingData->enddate','$bookingData->endtime','$bookingData->bikeid');";
+    $query = "INSERT INTO `main_database`.`booking`  (`id`, `startdate`, `starttime`, `enddate`, `endtime`, `bikeid`,`userId`) VALUES (NULL, '$bookingData->startdate', '$bookingData->starttime','$bookingData->enddate','$bookingData->endtime','$bookingData->bikeid','$bookingData->userId');";
     $result = mysql_query($query);
     if(mysql_affected_rows()> 0){
         $response = array("status" => "1","msg" => "Success");
@@ -169,9 +174,9 @@ function updateBooking($bookingData){
     $result = mysql_query($query);
     $queryData = mysql_fetch_object($result);
     if($queryData){
-        $query = "update `main_database`.`booking` set startdate='$bookingData->startdate',starttime ='$bookingData->starttime',enddate='$bookingData->enddate',endtime='$bookingData->endtime',bikeid='$bookingData->bikeid' where id='$bookingData->id'";
+        $query = "update `main_database`.`booking` set startdate='$bookingData->startdate',starttime ='$bookingData->starttime',enddate='$bookingData->enddate',endtime='$bookingData->endtime',bikeid='$bookingData->bikeid',userId='$bookingData->userId' where id='$bookingData->id'";
         $result = mysql_query($query);
-        if($result){
+        if(mysql_affected_rows() > 0){
             $response = array("status" => "1","msg" => "Success");
         }else{
             $response = array("status" => "0","msg" => "Failed");
@@ -199,7 +204,8 @@ function removeBooking($id){
     }
 }
 function addBike($bikeData){
-    $query = "INSERT INTO `main_database`.`bike` (`id`, `name`, `description`, `number_plate`, `image`, `chasisnumber`, `rate_per_hr`, `bike_owner_id`,`location`) VALUES (NULL, '$bikeData->name', '$bikeData->description','$bikeData->number_plate','$bikeData->image','$bikeData->chasisnumber','$bikeData->rate_per_hr',NULL,'$bikeData->location');";
+    //AppUtility_dump($bikeData);
+    $query = "INSERT INTO `main_database`.`bike` (`id`, `name`, `description`, `number_plate`, `image`, `chasisnumber`, `rate_per_hr`, `bike_owner_id`,`location`) VALUES (NULL, '$bikeData->name', '$bikeData->description','$bikeData->number_plate','$bikeData->image','$bikeData->chasisnumber','$bikeData->rate_per_hr',$bikeData->bike_owner_id,'$bikeData->location');";
     $result = mysql_query($query);
     if($result){
         $response = array("status" => "1","msg" => "Success");
@@ -235,7 +241,7 @@ function deleteBike($id){
     echo json_encode($response);
 }
 function addOrder($orderData){
-    $query = "INSERT INTO `main_database`.`order_details` (`id`, `bookingid`, `totalfare`, `date`) VALUES (NULL, '$orderData->bookingid', '$orderData->totalfare','$orderData->date');";
+    $query = "INSERT INTO `main_database`.`order_details` (`id`, `bookingid`, `totalfare`, `date`,`userId`) VALUES (NULL, '$orderData->bookingid', '$orderData->totalfare','$orderData->date',$orderData->userId);";
     $result = mysql_query($query);
     if($result){
         $response = array("status" => "1","msg" => "Success");
@@ -249,7 +255,7 @@ function updateOrder($orderData){
     $result = mysql_query($query);
     $queryData = mysql_fetch_object($result);
     if($queryData){
-        $query = "update `main_database`.`order_details` set bookingid='$orderData->bookingid',totalfare ='$orderData->totalfare',date='$orderData->date' where id='$orderData->id'";
+        $query = "update `main_database`.`order_details` set bookingid='$orderData->bookingid',totalfare ='$orderData->totalfare',date='$orderData->date',userId = '$orderData->userId' where id='$orderData->id'";
         $result = mysql_query($query);
         if($result){
             $response = array("status" => "1","msg" => "Success");
@@ -374,7 +380,7 @@ function getOwnerById($ownerId){
 }
 function addUser($userData){
 
-    $query = "INSERT INTO `main_database`.`user` (`id`, `name`, `address`, `mobile`,`email`,`username`,`password`,`doc_submitted`,`bookingId`,`orderId`) VALUES (NULL, '$userData->name', '$userData->address','$userData->mobile','$userData->email','$userData->username','$userData->password','$userData->doc_submitted','$userData->bookingId',NULL);";
+    $query = "INSERT INTO `main_database`.`user` (`id`, `name`, `address`, `mobile`,`email`,`username`,`password`,`doc_submitted`) VALUES (NULL, '$userData->name', '$userData->address','$userData->mobile','$userData->email','$userData->username','$userData->password','$userData->doc_submitted');";
     $result = mysql_query($query);
     if($result){
         $response = array("status" => "1","msg" => "Success");
@@ -388,7 +394,7 @@ function updateUser($userData){
     $result = mysql_query($query);
     $queryData = mysql_fetch_object($result);
     if($queryData){
-        $query = "update `main_database`.`user` set name='$userData->name',address ='$userData->address',mobile='$userData->mobile',email = '$userData->email',username='$userData->username',password = '$userData->password',doc_submitted = '$userData->doc_submitted',bookingId ='$userData->bookingId' where id ='$userData->id';";
+        $query = "update `main_database`.`user` set name='$userData->name',address ='$userData->address',mobile='$userData->mobile',email = '$userData->email',username='$userData->username',password = '$userData->password',doc_submitted = '$userData->doc_submitted' where id ='$userData->id';";
         //print_r($query);die;
         $result = mysql_query($query);
         if($result){
@@ -418,7 +424,6 @@ function deleteUser($userId){
 
     }
 }
-
 function getUserById($userId){
 
     $query = "select * from `main_database`.`user` where id='$userId'";
@@ -433,5 +438,110 @@ function getUserById($userId){
         echo json_encode("No Data Found");
     }
 }
-function checkBikeAailability($startDate,$endDate){
+function checkBikeAailability($startDate,$endDate,$startTime){
+    $query = "select * from `main_database`.`bike`";
+    $result = mysql_query($query);
+    $bikeData = array();
+    $availableBikes = array();
+    while($data = mysql_fetch_assoc($result)){
+
+        array_push($bikeData,$data);
+    }
+
+    foreach($bikeData as $singleBike){
+        $bikeId = $singleBike['id'];
+        $q = "select * from booking where bikeid ='$bikeId'";
+        $result = mysql_query($q);
+        $bookingData = array();
+        while($data = mysql_fetch_assoc($result)){
+
+            array_push($bookingData,$data);
+        }
+        if(mysql_num_rows($result)>0){
+            foreach($bookingData as $queryData){
+                if ((strtotime($startDate) > strtotime($queryData['startdate'])) && (strtotime($startDate) > strtotime($queryData['enddate']))) {
+                    array_push($availableBikes,$singleBike);
+
+                } else {
+                    if (strtotime($startDate) == strtotime($queryData['enddate'])) {
+                        if ((strtotime($startTime) > strtotime($queryData['endtime']))) {
+                            array_push($availableBikes,$singleBike);
+                        }else{
+
+                            $key = array_search($singleBike, $availableBikes);
+                            unset($availableBikes[$key]);
+                        }
+                    }
+                }
+            }
+        }else{
+            array_push($availableBikes,$singleBike);
+        }
+    }
+    if($availableBikes){
+        echo json_encode($availableBikes);
+    }else{
+        $response = array("status" => "0", "msg" => "No Bike Available");
+        echo json_encode($response);
+    }
 }
+function forgetPassword($userId,$email){
+
+    $mail = new PHPMailer;
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    /*$mail->SMTPDebug = 2;*/
+    $mail->SMTPAuth = true;
+    $mail->Username = 'rohankawade222@gmail.com';
+    $mail->Password = 'sunshine222tw';
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
+    $mail->From = 'rohankawade222@gmail.com';
+    $mail->FromName = 'Bikes On Rent';
+    $query = "select * from `main_database`.`user` where id='$userId' AND email = '$email' ";
+    $result = mysql_query($query);
+    $userData = array();
+    while($data = mysql_fetch_assoc($result)){
+        array_push($userData,$data);
+    }
+    if($userData[0]['email'] == $email){
+        $password = randomTokenGenerater();
+        $query ="update `main_database`.`user` set password = '$password' where id='$userId'";
+        $result = mysql_query($query);
+        if(mysql_affected_rows()>0){
+            $userName = $userData[0]['name'];
+            $mail->addAddress($userData[0]['email']);
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+            $mail->isHTML(true);
+            $mail->Subject = 'Change Account Password';
+            $mail->Body = "Hi <b>$userName</b>";
+            $mail->Body .= "<br /><br />Below is your one time password <br /> Password: ";
+            $mail->Body .= $password;
+            $mail->Body .= "<br /> Kindly note that this passowrd is valid for specific time limit,Use it to set a new password";
+            $mail->Body .= "<br/><br /> <b>If you think this mail was sent incorrectly, please contact administrator immediately</b>";
+            $mail->AltBody = 'You are using basic web browser ';
+            if(!$mail->send()) {
+                $response = array("status" => "0","msg" => "Cannot send Mail, Please try after some time.$mail->ErrorInfo");
+            } else {
+                $response = array("status" => "1","msg" => "Mail Sent");
+            }
+        }else{
+            $response = array("status" => "0","msg" => "Cannot send Mail, Please try after some time.$mail->ErrorInfo");
+        }
+    }else{
+        $response = array("status" => "0","msg" => "Wrong Email-id");
+
+    }
+    echo json_encode($response);
+}
+function randomTokenGenerater(){
+    $characters = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $string = '';
+    $max = strlen($characters) - 1;
+    for ($i = 0; $i < 8; $i++) {
+        $string .= $characters[mt_rand(0, $max)];
+    }
+    return $string;
+}
+
+

@@ -1,0 +1,211 @@
+----------------Login API----------------
+{
+  "loginDetails":{
+   "username":"rohankawade222@gmail.com",
+   "password":"F5PMqMO6"
+  }
+}
+
+----------------ADD OWNER API-------------------------
+{
+  "ownerDetails":{
+   "name":"Pradeep",
+   "address":"Kothrud,Pune",
+   "email":"pradeeppandey@gmail.com",
+   "mob":9561313954,
+   "offcadd":"Warje,Pune"
+  }
+}	
+----------------UPDATE OWNER API----------------
+{
+  "ownerDetails":{
+  "id":id,
+   "name":"Pradeep",
+   "address":"Kothrud,Pune",
+   "email":"pradeeppandey@gmail.com",
+   "mob":9561313954,
+   "offcadd":"Warje,Pune"
+  }
+}	
+------------------DELETE OWNER API-----------------
+GET
+parameter = ownerId
+http://localhost/BikesOnRent1/services/services.php?ownerId=val
+
+-----------------ADD BOOKING API--------------------------------
+{
+  "bookingDetails":{
+    "startdate":"2016-09-23",
+    "starttime":"08:27:19",
+    "enddate":"2016-09-24",
+    "endtime":"08:18:20",
+    "bikeid":1,
+    "userId":5
+  }
+}
+
+----------------UPDATE BOOKING API-------------------------------
+{
+  "bookingDetails":{
+	"id":val
+    "startdate":"2016-09-23",
+    "starttime":"08:27:19",
+    "enddate":"2016-09-24",
+    "endtime":"08:18:20",
+    "bikeid":1,
+    "userId":5
+  }
+}
+
+----------------DELETE BOOKING API--------------------------------
+GET
+
+http://localhost/BikesOnRent1/services/services.php?bookingid=val
+
+-----------------ADD BIKE API-------------------------------
+{
+  "bikeDetails":{
+    "name":"Royal Enfield",
+    "description":"350 Matt Black",
+    "number_plate":"MH 12 AA 4548 ",
+    "image":"Not Available",
+    "chasisnumber":21212121512,
+    "rate_per_hr":399,
+	"bike_owner_id":3
+    "location":"Kothrud,pune"
+  }
+}
+
+----------------UPDATE BIKE API-------------------------------
+{
+  "bikeDetails":{
+	"id":val
+    "name":"Royal Enfield",
+    "description":"350 Matt Black",
+    "number_plate":"MH 12 AA 4548 ",
+    "image":"Not Available",
+    "chasisnumber":21212121512,
+    "rate_per_hr":399,
+	"bike_owner_id":3,
+    "location":"Kothrud,pune"
+  }
+}
+
+------------------------DELETE BIKE API-------------------------------
+GET
+http://localhost/BikesOnRent1/services/services.php?bikeId=val
+
+
+----------------------ADD ORDER API-------------------------------
+
+{
+  "orderDetails":{
+    "bookingid":2,
+    "totalfare":"400",
+    "date":"2016-09-24 ",
+    "userId":5
+   }
+}
+
+-----------------------UPDATE ORDER API-------------------------------
+
+{
+  "orderDetails":{
+   "id":Val,
+   "bookingid":2,
+    "totalfare":"400",
+    "date":"2016-09-24 ",
+    "userId":5
+   }
+}
+
+----------------------DELETE ORDER API-----------------------------------
+GET
+http://localhost/BikesOnRent1/services/services.php?orderId=val
+
+----------------------------ADD USER API-----------------------------------
+
+{
+  "userDetails":{
+    "name":"Mahes Warule",
+    "address":"Kothurd,Pune",
+    "mobile":"8796104710",
+    "email":"mahesh.warule.59@gmail.com",
+    "username":"leo_messi_10",
+    "password":"Dragunov00000",
+	"doc_submitted":"Pan Card"    
+   }
+}
+
+----------------------------UPDATE USER API-----------------------------------
+
+
+{
+  "userDetails":{
+	"id":val
+	"name":"Mahes Warule",
+    "address":"Kothurd,Pune",
+    "mobile":"8796104710",
+    "email":"mahesh.warule.59@gmail.com",
+    "username":"leo_messi_10",
+    "password":"Dragunov00000",
+	"doc_submitted":"Pan Card"    
+   }
+}
+
+----------------------DELETE USER API-----------------------------------
+GET
+http://localhost/BikesOnRent1/services/services.php?userid=val
+
+
+----------------------GET ALL BIKE API-----------------------------------
+GET
+http://localhost/BikesOnRent1/services/services.php?getallbike
+
+
+----------------------GET BIKE BY ID API-----------------------------------
+GET
+http://localhost/BikesOnRent1/services/services.php?getbikebyid=val
+
+
+----------------------GET BIKE BY NAME API-----------------------------------
+GET
+http://localhost/BikesOnRent1/services/services.php?bikename=val
+
+
+----------------------GET BIKE BY RATE PER HR API-----------------------------------
+GET
+http://localhost/BikesOnRent1/services/services.php?getbyrph=val
+
+
+
+----------------------GET USER BY ID API-----------------------------------
+GET
+http://localhost/BikesOnRent1/services/services.php?getuserbyid=val
+
+
+
+
+----------------------AUTO-COMPLETE API-----------------------------------
+GET
+http://localhost/BikesOnRent1/services/services.php?autosearch=true
+
+
+
+----------------------GET BIKE BY DATE API-----------------------------------
+GET
+http://localhost/BikesOnRent1/services/services.php?startdate=val&enddate=val
+
+
+----------------------FORGOT PASSWORD API-----------------------------------
+GET
+http://localhost/BikesOnRent1/services/services.php?id=val&email=val
+
+
+----------------------GET OWNER BY ID API-----------------------------------
+GET
+http://localhost/BikesOnRent1/services/services.php?getownerbyid=val
+
+----------------------GET ALL OWNER API-----------------------------------
+GET
+http://localhost/BikesOnRent1/services/services.php?getallowner
