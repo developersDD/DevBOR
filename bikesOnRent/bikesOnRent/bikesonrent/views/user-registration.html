@@ -2,7 +2,7 @@
 <html lang="en" id="top" class="no-js">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Bikes On Rent | Home</title>
+    <title>User Login | Rental Bikes</title>
     <meta http-equiv="Cache-Control" content="max-age=3600" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
@@ -46,6 +46,7 @@
     <link rel="stylesheet" type="text/css" href="../content/css/module/contacts.css" media="all" />
     <link rel="stylesheet" type="text/css" href="../content/css/module/pricing_conditions.css" media="all" />-->
     <!--<link rel="stylesheet" type="text/css" href="../content/css/module/review.css" media="all" />-->
+    <link href="../content/css/module/customer.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="../content/css/module/search.css" media="all" />
     <!--<link rel="stylesheet" type="text/css" href="../content/css/module/tags.css" media="all" />
     <link rel="stylesheet" type="text/css" href="../content/css/module/wishlist.css" media="all" />-->
@@ -54,7 +55,8 @@
     <link rel="stylesheet" type="text/css" href="../content/css/module/superfish.css" media="all" />
     <link rel="stylesheet" type="text/css" href="../content/css/easydropdown.css" media="all" />
     <link rel="stylesheet" type="text/css" href="../content/css/googlemap/tm_googlemap.css" media="all" />
-  
+    <link href="../content/css/_boRmn_min.css" rel="stylesheet" />
+
     <script type="text/javascript" src="../content/js/prototype/prototype.js"></script>
     <script type="text/javascript" src="../content/js/lib/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../content/js/lib/jquery/noconflict.js"></script>
@@ -93,13 +95,11 @@
     <script src="../content/js/bor.nl-gblcnfg.js"></script>
     <script src="../content/js/_boRmn_min.js"></script>
     <script src="../content/js/bor.nl-gblajx.js"></script>
-    <script src="../content/js/boR.nl-ndx.js"></script>
 </head>
-<body class="ps-static cms-index-index cms-home">
-     <div class="main-page-loader">
+<body class="ps-static  customer-account-login">
+    <div class="main-page-loader">
     </div>
     <div class="wrapper ps-static en-lang-class">
-        <!--If jaavascript is disabled-->
         <noscript>
             <div class="global-site-notice noscript">
                 <div class="notice-inner">
@@ -111,10 +111,9 @@
             </div>
         </noscript>
         <div class="page">
-            <!--login modal appends here-->
+
             <div class="skip-links2"><span class="skip-link2 skip-account2"></span></div>
             <div id="header-account2" class="skip-content2"></div>
-            <!--login modal appends here-->
 
             <header id="header" class="page-header">
                 <div class="header-row-background">
@@ -125,7 +124,6 @@
                                     <div class="links">
                                         <ul>
                                             <li class="first"><a href="#" title="My Account" class="my-account-link">My Account</a></li>
-                                            <li><a href="user-registration.html?register" title="Register" class="register-link">Register</a></li>
                                             <li class=" last" id="txtlogin"><a href="user-login.html?login" title="Log In" class="log-in-link">Log In</a></li>
                                         </ul>
                                     </div>
@@ -156,6 +154,7 @@
                                     </form>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -220,7 +219,7 @@
                 <div class="skip-container mobile">
                     <div class="container">
                         <div class="skip-links">
-                            <a href="#header-nav" class="skip-nav skip-link">
+                            <a href="#header-nav" class="skip-link skip-nav">
                                 <span class="icon"></span>
                                 <span class="label">Menu</span>
                             </a>
@@ -229,16 +228,16 @@
                                 <span class="label">Search</span>
                             </a>
                             <div id="header-search" class="skip-content">
-                                <form id="search_mini_form" action="catalog-search-results.html" method="get">
+                                <form id="Form1" action="catalog-search-results.html" method="get">
                                     <div class="input-box">
                                         <label for="search">Search:</label>
-                                        <input id="search" type="search" name="bikename" value="" class="input-text required-entry" maxlength="128" placeholder="Search entire store here..." />
+                                        <input id="search1" type="search" name="bikename" value="" class="input-text required-entry" maxlength="128" placeholder="Search entire store here..." />
                                         <button type="submit" title="Search" class="button search-button"><span><span>Search</span></span></button>
                                     </div>
-                                    <div id="search_autocomplete" class="search-autocomplete"></div>
+                                    <div id="Div1" class="search-autocomplete"></div>
                                 </form>
                             </div>
-                            <a href="#" data-target-element="#header-account" class="skip-link skip-account">
+                            <a href="#" data-target-element="#header-account" class="skip-link skip-account last">
                                 <span class="icon"></span>
                                 <span class="label">Account</span>
                             </a>
@@ -247,8 +246,7 @@
                                 <div class="links">
                                     <ul>
                                         <li class="first"><a href="#" title="My Account" class="my-account-link">My Account</a></li>
-                                        <li><a href="user-registration.html?register" title="Register" class="register-link">Register</a></li>
-                                        <li class=" last"><a href="user-login.html?login" title="Log In" class="log-in-link">Log In</a></li>
+                                        <li class=" last" id="Li1"><a href="user-login.html?login" title="Log In" class="log-in-link">Log In</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -256,21 +254,6 @@
                     </div>
                 </div>
             </header>
-            <div class="index_parallax1" data-source-url="../content/images/bg_parallax1.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="index_box">
-                                <div class="index_info_block1">
-                                    <h2>Extreme</h2>
-                                    <h3>mountain bike enthusiasts</h3>
-                                    <a href="#" class="shop_now"><span>Shop now!</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="main-container col1-layout">
                 <div class="container">
                     <div class="row">
@@ -278,9 +261,6 @@
                             <div class="main">
                                 <div class="col-main">
                                     <div class="padding-s">
-                                        <div class="new_products" id="newProducts">
-                                        </div>
-
                                         <div class="youama-ajaxlogin-loader main-login-loader">
                                         </div>
                                         <div class="youama-login-window">
@@ -295,7 +275,7 @@
                                                     <div class="youama-window-box first">
                                                         <div class="youama-window-content">
                                                             <div class="input-fly youama-showhideme input-email">
-                                                                <label>E-mail address <span>*</span></label>
+                                                                <label>E-mail address /Username <span>*</span></label>
                                                                 <input type="text" placeholder="E-mail address" class="youama-email" name="youama-email" value="" />
                                                                 <div class="youama-ajaxlogin-error err-email err-noemail err-wrongemail err-wronglogin"></div>
                                                             </div>
@@ -413,8 +393,105 @@
                                             <div class="ytmpa-nolicence">Terms and Conditions are required!</div>
                                             <div class="ytmpa-wronglogin">Email or Password is wrong!</div>
                                         </div>
-                                        <div class="std">
-                                            <div class="clear"></div>
+
+                                        <div class="main-loginPage-loader">
+                                        </div>
+                                        <div class="account-create">
+                                            <div class="page-title">
+                                                <h1>Create an Account</h1>
+                                            </div>
+                                            <form id="login-form" class="scaffold-form">
+                                                <div class="row">
+                                                    <div class="col-2 registered-users col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                                                        <div class="theme-block">
+                                                            <div class="content fieldset">
+                                                                <h2>New Here?</h2>
+                                                               <p class="form-instructions">Registration is free and easy!</p>
+                                                                <p class="required">* Required Fields</p>
+                                                                <ul class="form-list">
+                                                                    <li class="fields">
+                                                                    <li class="fields">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12 col-xs-12  field">
+                                                                                <label for="name" class="required"><em>*</em>Name</label>
+                                                                                <div class="input-box">
+                                                                                    <input type="text" id="name" name="name" value="" title="Name" maxlength="255" class="input-text required-entry" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-xs-12  field">
+                                                                                <label for="email_address" class="required"><em>*</em>Email Address</label>
+                                                                                <div class="input-box">
+                                                                                    <input type="email" autocapitalize="off" autocorrect="off" spellcheck="false" name="email" id="email_address" value="" title="Email Address" class="input-text validate-email required-entry" />
+                                                                                </div>
+                                                                            </div>
+                                                                             <div class="col-lg-6 col-xs-12  field">
+                                                                                <label for="mobile" class="required"><em>*</em>Mobile</label>
+                                                                                <div class="input-box">
+                                                                                    <input type="text" autocapitalize="off" autocorrect="off" spellcheck="false" name="mobile" id="mobile" value="" title="mobile" class="input-text validate-mobile-indian required-entry" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                             <div class="col-lg-6 col-xs-12 field">
+                                                                                <label for="password" class="required"><em>*</em>Password</label>
+                                                                                <div class="input-box">
+                                                                                    <input type="password" name="password" id="password" title="Password" class="input-text required-entry validate-password" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-xs-12  field">
+                                                                                <label for="confirmation" class="required"><em>*</em>Confirm Password</label>
+                                                                                <div class="input-box">
+                                                                                    <input type="password" name="confirmation" title="Confirm Password" id="confirmation" class="input-text required-entry validate-cpassword" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-xs-12 field name-lastname">
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="remember-me-popup">
+                                                                    <div class="remember-me-popup-head">
+                                                                        <h3>What's this?</h3>
+                                                                        <a href="#" class="remember-me-popup-close" title="Close">Close</a>
+                                                                    </div>
+                                                                    <div class="remember-me-popup-body">
+                                                                        <p>Checking &quot;Remember Me&quot; will let you access your shopping cart on this computer when you are logged out</p>
+                                                                        <div class="remember-me-popup-close-button a-right">
+                                                                            <a href="#" class="remember-me-popup-close button" title="Close"><span>Close</span></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="buttons-set">
+                                                                <button type="submit" title="Register" class="button"><span><span>Register</span></span></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-1 col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="theme-block" style="min-height:200px">
+                                                            <div class="content">
+                                                                <h2>Already registered?</h2>
+                                                                <p class="form-instructions">If you have an account with us, please log in.</p>
+                                                                <ul class="benefits">
+                                                                    <li>Faster login</li>
+                                                                    <li>Access your account</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="buttons-set">
+                                                                <a title="Login" class="button" href="user-login.html"><span><span>Login here</span></span></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <script type="text/javascript">
+                                                //<![CDATA[
+                                                var dataForm = new VarienForm('form-validate', true);
+                                                //]]>
+                                            </script>
                                         </div>
                                     </div>
                                 </div>
@@ -505,5 +582,10 @@
             </div>
         </div>
     </div>
+    <script>
+        jQuery('#login-form').on('submit', function (e) {
+            e.preventDefault();
+        })
+    </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 /**
- * Magento
+ * Rental Bikes
  *
  */
 
@@ -37,14 +37,14 @@ $j(document).ready(function (){
         }
     };*/
 
-    // ==============================================
-    // Remove Cart link form TopLinks
-    // ==============================================
+    //// ==============================================
+    //// Remove Cart link form TopLinks
+    //// ==============================================
 
-    if(jQuery('.top-links-inline').length > 0){
-        jQuery('li a.top-link-cart, li a.register-link', '.top-links-inline').parent().remove();
+    //if(jQuery('.top-links-inline').length > 0){
+    //    jQuery('li a.top-link-cart, li a.register-link', '.top-links-inline').parent().remove();
 
-    }
+    //}
 
     // ==============================================
     // Superfish Menu

@@ -41,8 +41,8 @@
          * Disable links what are linked to login or register pages.
          */
         function removeOriginalJsLocations() {
-            $('a[href*="customer/account/create"], ' +
-                'a[href*="customer/account/login"], ' +
+            $('a[href*="user-registration.html?register"], ' +
+                'a[href*="user-login.html?login"], ' +
                 '.customer-account-login .new-users button')
                 .attr('onclick', 'return false;');
         }
@@ -70,7 +70,7 @@
                 return false;
             });
             // Open login window by back-link on customer/account/forgotpassword
-            $('a[href*="customer/account/login"]').click(function() {
+            $('a[href*="user-login.html?login"]').click(function() {
                 $('.skip-links2 .skip-account2').trigger('click');
                 $('div.shadow').addClass('active-form');
                 heightWidthForm();
@@ -95,7 +95,7 @@
                 }
             });
             // Open register window
-            $('a[href*="customer/account/create"], .new-users button')
+            $('a[href*="user-registration.html?register"], .new-users button')
                 .on('click', function() {
                 $('.skip-links2 .skip-account2').trigger('click');
                 animateCloseWindow('login', false, false);
@@ -151,15 +151,15 @@
 
             // Press enter in login window
             $(document).keypress(function(e) {
-                if(e.which == 13
+                if (e.which == 13
                     && $('.youama-login-window').css('display') == 'block') {
                     setDatas('login');
                     validateDatas('login');
                     if (opts.errors != '') {
                         setError(opts.errors, 'login');
                     }
-                    else{
-                        callAjaxControllerLogin();
+                    else {
+                        callAjaxControllerLogin('login');
                     }
                 }
             });
@@ -171,9 +171,17 @@
                 if (opts.errors != '') {
                     setError(opts.errors, 'login');
                 } else {
-                    callAjaxControllerLogin();
+                    callAjaxControllerLogin('login');
                 }
                 return false;
+            });
+
+            //login from login page
+            $('#send2').on('click', function () {
+                var dataForm = new VarienForm('login-form', true);
+                if (dataForm.validator && dataForm.validator.validate()) {
+                    callAjaxControllerLogin('loginPage');
+                }
             });
         }
 
@@ -194,14 +202,18 @@
         function animateLoader(windowName, step) {
             // Start
             if (step == 'start') {
-                $('.youama-ajaxlogin-loader').fadeIn();
+                $('.main-'+ windowName +'-loader').fadeIn();
                 $('.youama-' + windowName + '-window')
-                    .animate({opacity : '0.4'});
+                    .animate({ opacity: '0.4' });
+                $('#loginPageInnerBox')
+                    .animate({ opacity: '0.4' });
             // Stop
             } else {
-                $('.youama-ajaxlogin-loader').fadeOut('normal', function() {
+                $('.main-' + windowName + '-loader').fadeOut('normal', function () {
                     $('.youama-' + windowName + '-window')
-                        .animate({opacity : '1'});
+                        .animate({ opacity: '1' });
+                    $('#loginPageInnerBox')
+                    .animate({ opacity: '1' });
                 });
             }
         }
@@ -450,27 +462,37 @@
         /**
          * Ajax call for login.
          */
-        function callAjaxControllerLogin() {
+        function callAjaxControllerLogin(windowName) {
             var lgdt = new Object();
             var lgdt1 = new Object();
-            lgdt1.username = opts.email;
-            lgdt1.password = opts.password;
-            lgdt.loginDetails = lgdt1;
-            var loginDetails = JSON.stringify(lgdt);
-            // If there is no another ajax calling
-            if (opts.stop != true){
-                opts.stop = true;
-                // Load the Loader
-                animateLoader('login', 'start');
-                // Send data
-                jcnlGlobalAjax(mthdP,loginDetails,opts.controllerUrl,callAjaxControllerLoginSucess,callAjaxLRControllerFailed);
+            if (windowName == 'login') {
+                lgdt1.username = opts.email;
+                lgdt1.password = opts.password;
+                lgdt.loginDetails = lgdt1;
+                var loginDetails = JSON.stringify(lgdt);
+                // If there is no another ajax calling
+                if (opts.stop != true) {
+                    opts.stop = true;
+                    // Load the Loader
+                    animateLoader('login', 'start');
+                    // Send data
+                    jcnlGlobalAjax(mthdP, loginDetails, opts.controllerUrl, callAjaxControllerLoginSuccess, callAjaxLRControllerFailed);
+                }
+            } else {
+                lgdt1.username = $('#email').val();
+                lgdt1.password = $('#pass').val();
+                lgdt.loginDetails = lgdt1;
+                var loginDetails = JSON.stringify(lgdt);
+                animateLoader('loginPage', 'start');
+                jcnlGlobalAjax(mthdP, loginDetails, opts.controllerUrl, callAjaxControllerLoginPageSuccess, callAjaxLRControllerPageFailed);
             }
+            
         }
 
         /**
-        * success call for login.
+        * success call for login - modal.
         */
-        function callAjaxControllerLoginSucess(msg) {
+        function callAjaxControllerLoginSuccess(msg) {
             var response = JSON.parse(msg);
             // // If there is error
             if (response.msg != 'Success') {
@@ -493,11 +515,37 @@
         }
 
         /**
-        * failure call for login/registration.
+       * success call for login - page.
+       */
+        function callAjaxControllerLoginPageSuccess(msg) {
+            var response = JSON.parse(msg);
+            // // If there is error
+            if (response.msg != 'Success') {
+                //set error.
+                alert("Username and/or Password is worng!");
+                // If everything are OK
+            } else {
+                // Redirect 
+                    window.location = opts.profileUrl;
+                    sessionStorage.setItem("user", response.userId);
+            }
+            animateLoader('loginPage', 'stop');
+        }
+
+        /**
+        * failure call for login/registration - modal.
         */
         function callAjaxLRControllerFailed(msg){
             opts.stop = false;
             animateLoader('login', 'stop');
+        }
+
+        /**
+        * failure call for login/registration -page.
+        */
+        function callAjaxLRControllerPageFailed(msg) {
+            opts.stop = false;
+            animateLoader('loginPage', 'stop');
         }
 
         /**

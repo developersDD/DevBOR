@@ -20,5 +20,11 @@ function jcnlGlobalAjax(mthd, dt, url, scscalbck, falcalbck) {
     }
     xmlhttp.open(mthd, url, true);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
+    //xmlhttp.setRequestHeader('Authorization', 'Basic ' + btoa('rbktw222:smalwonder'));
     xmlhttp.send(dt);
+}
+
+//callback for all ajax failures
+function ajaxFailureCallback(dt) {
+
 }

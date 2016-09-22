@@ -59,7 +59,7 @@
   <ItemGroup>
     <Content Include="bikesonrent\content\css\ajaxlogin\ajaxlogin.css" />
     <Content Include="bikesonrent\content\css\bootstrap.css" />
-    <Content Include="bikesonrent\content\css\boR.nl-ndx.css" />
+    <Content Include="bikesonrent\content\css\_boRmn_min.css" />
     <Content Include="bikesonrent\content\css\easydropdown.css" />
     <Content Include="bikesonrent\content\css\font-awesome.css" />
     <Content Include="bikesonrent\content\css\googlemap\tm_googlemap.css" />
@@ -171,7 +171,9 @@
     <Content Include="bikesonrent\content\js\varien\js.js" />
     <Content Include="bikesonrent\content\js\_boRmn_min.js" />
     <Content Include="bikesonrent\views\catalog-search-results.html" />
+    <Content Include="bikesonrent\views\user-registration.html" />
     <Content Include="bikesonrent\views\index.html" />
+    <Content Include="bikesonrent\views\user-login.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

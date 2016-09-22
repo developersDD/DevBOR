@@ -56,6 +56,7 @@
     <link rel="stylesheet" type="text/css" href="../content/css/module/superfish.css" media="all" />
     <link rel="stylesheet" type="text/css" href="../content/css/easydropdown.css" media="all" />
     <link rel="stylesheet" type="text/css" href="../content/css/googlemap/tm_googlemap.css" media="all" />
+
     <script type="text/javascript" src="../content/js/prototype/prototype.js"></script>
     <script type="text/javascript" src="../content/js/lib/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../content/js/lib/jquery/noconflict.js"></script>
@@ -97,6 +98,8 @@
     <script src="../content/js/boR-search.js"></script>
 </head>
 <body class=" catalogsearch-result-index">
+     <div class="main-page-loader">
+    </div>
     <div class="wrapper">
         <noscript>
             <div class="global-site-notice noscript">
@@ -109,48 +112,26 @@
             </div>
         </noscript>
         <div class="page">
-
+            <!--login modal appends here-->
             <div class="skip-links2"><span class="skip-link2 skip-account2"></span></div>
             <div id="header-account2" class="skip-content2"></div>
+            <!--login modal appends here-->
 
             <header id="header" class="page-header">
                 <div class="header-row-background">
                     <div class="container">
                         <div class="header-row">
-                            <div class="header-minicart desktop">
-                                <a href="#" data-target-element="#header-cart" class="skip-link skip-cart  no-count">
-                                    <span class="icon"></span>
-                                    <span class="label">Cart</span>
-                                    <span class="count">0</span>
-                                </a>
-                                <div id="header-cart" class="block block-cart skip-content">
-                                    <div id="minicart-error-message" class="minicart-message"></div>
-                                    <div id="minicart-success-message" class="minicart-message"></div>
-                                    <div class="minicart-wrapper">
-                                        <p class="block-subtitle">
-                                            Recently added item(s) <a class="close skip-link-close material-design-cancel19" href="#" title="Close"></a>
-                                        </p>
-                                        <p class="empty">You have no items in your shopping cart.</p>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="top-links">
                                 <div id="" class="top-links-inline">
                                     <div class="links">
                                         <ul>
                                             <li class="first"><a href="#" title="My Account" class="my-account-link">My Account</a></li>
-                                            <li><a href="#" title="My Wishlist" class="wishlist-link">My Wishlist</a></li>
-                                            <li><a href="#" title="My Cart" class="top-link-cart">My Cart</a></li>
-                                            <li><a href="#" title="Checkout" class="top-link-checkout">Checkout</a></li>
-                                            <li><a href="customer/account/create/" title="Register" class="register-link">Register</a></li>
-                                            <li class=" last"><a href="customer/account/login/" title="Log In" class="log-in-link">Log In</a></li>
+                                            <li><a href="user-registration.html?register" title="Register" class="register-link">Register</a></li>
+                                            <li class=" last" id="txtlogin"><a href="user-login.html?login" title="Log In" class="log-in-link">Log In</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -158,7 +139,7 @@
                     <div class="container">
                         <div class="page-header-container">
                             <a class="logo" href="index.html">
-                                <img src="../content/images/logo.png" alt="Magento Commerce" />
+                                <img src="../content/images/logo.png" alt="Rental Bikes" />
                             </a>
 
                             <div class="header-search desktop">
@@ -186,73 +167,11 @@
                             <div class="nav-container-mobile">
                                 <div class="sf-menu-block">
                                     <ul class="sf-menu-phone">
-                                        <li class="level0 nav-1 first parent"><a href="#" class="level0 has-children">Shop by Bike Type</a><ul class="level0">
-                                            <li class="level1 nav-1-1 first parent"><a href="#" class="level1 has-children">Road</a><ul class="level1">
-                                                <li class="level2 nav-1-1-1 first"><a href="#" class="level2 ">Racing Road Bikes</a></li>
-                                                <li class="level2 nav-1-1-2"><a href="#" class="level2 ">Touring Bikes</a></li>
-                                                <li class="level2 nav-1-1-3"><a href="#" class="level2 ">Track Racing Bikes</a></li>
-                                                <li class="level2 nav-1-1-4"><a href="#" class="level2 ">Time Trial Bikes</a></li>
-                                                <li class="level2 nav-1-1-5 last"><a href="#" class="level2 ">Women's Road Bikes</a></li>
-                                            </ul>
-                                            </li>
-                                            <li class="level1 nav-1-2 parent"><a href="#" class="level1 has-children">Mountain</a><ul class="level1">
-                                                <li class="level2 nav-1-2-1 first"><a href="#" class="level2 ">Dirt Jump Bikes</a></li>
-                                                <li class="level2 nav-1-2-2"><a href="#" class="level2 ">Downhill Mountain Bikes</a></li>
-                                                <li class="level2 nav-1-2-3"><a href="#" class="level2 ">Fat Bikes</a></li>
-                                                <li class="level2 nav-1-2-4"><a href="#" class="level2 ">Trail Mountain Bikes</a></li>
-                                                <li class="level2 nav-1-2-5 last"><a href="#" class="level2 ">Women's Mountain Bikes</a></li>
-                                            </ul>
-                                            </li>
-                                            <li class="level1 nav-1-3 parent"><a href="#" class="level1 has-children">City</a><ul class="level1">
-                                                <li class="level2 nav-1-3-1 first"><a href="#" class="level2 ">Gravel Road Bikes</a></li>
-                                                <li class="level2 nav-1-3-2"><a href="#" class="level2 ">Commuter Bikes</a></li>
-                                                <li class="level2 nav-1-3-3"><a href="#" class="level2 ">Cyclocross Bikes</a></li>
-                                                <li class="level2 nav-1-3-4"><a href="#" class="level2 ">Endurance Road Bikes</a></li>
-                                                <li class="level2 nav-1-3-5 last"><a href="#" class="level2 ">Flat Bar Road Bikes</a></li>
-                                            </ul>
-                                            </li>
-                                            <li class="level1 nav-1-4 last parent"><a href="#" class="level1 has-children">Children’s</a><ul class="level1">
-                                                <li class="level2 nav-1-4-1 first"><a href="#" class="level2 ">Kid's BMX Bikes</a></li>
-                                                <li class="level2 nav-1-4-2"><a href="#" class="level2 ">Kid's Road Bikes</a></li>
-                                                <li class="level2 nav-1-4-3"><a href="#" class="level2 ">Balance Bikes</a></li>
-                                                <li class="level2 nav-1-4-4"><a href="#" class="level2 ">Kid's Sidewalk Bikes</a></li>
-                                                <li class="level2 nav-1-4-5 last"><a href="#" class="level2 ">Tricycles</a></li>
-                                            </ul>
-                                            </li>
-                                        </ul>
-                                        </li>
-                                        <li class="level0 nav-2"><a href="#" class="level0 ">Bike parts</a></li>
-                                        <li class="level0 nav-3"><a href="#" class="level0 ">Clothes </a></li>
-                                        <li class="level0 nav-4"><a href="#" class="level0 ">Pocket</a></li>
-                                        <li class="level0 nav-5 parent"><a href="#" class="level0 has-children">Accessories </a>
-                                            <ul class="level0">
-                                                <li class="level1 nav-5-1 first parent"><a href="#" class="level1 has-children">Saddles</a><ul class="level1">
-                                                    <li class="level2 nav-5-1-1 first"><a href="#" class="level2 ">Mountain Bike Saddles</a></li>
-                                                    <li class="level2 nav-5-1-2"><a href="#" class="level2 ">Men's Bike Saddles</a></li>
-                                                    <li class="level2 nav-5-1-3"><a href="#" class="level2 ">Women's Bike Saddles</a></li>
-                                                    <li class="level2 nav-5-1-4"><a href="#" class="level2 ">Road Bike Seatposts</a></li>
-                                                    <li class="level2 nav-5-1-5 last"><a href="#" class="level2 ">Comfort Saddles</a></li>
-                                                </ul>
-                                                </li>
-                                                <li class="level1 nav-5-2 parent"><a href="#" class="level1 has-children">Pedals</a><ul class="level1">
-                                                    <li class="level2 nav-5-2-1 first"><a href="#" class="level2 ">Mountain Bike Pedals</a></li>
-                                                    <li class="level2 nav-5-2-2"><a href="#" class="level2 ">Road Bike Pedals</a></li>
-                                                    <li class="level2 nav-5-2-3"><a href="#" class="level2 ">Replacement Bike Cleats</a></li>
-                                                    <li class="level2 nav-5-2-4"><a href="#" class="level2 ">Downhill Mountain Pedals</a></li>
-                                                    <li class="level2 nav-5-2-5 last"><a href="#" class="level2 ">Road Bike Pedals</a></li>
-                                                </ul>
-                                                </li>
-                                                <li class="level1 nav-5-3 last parent"><a href="#" class="level1 has-children">Pumps</a><ul class="level1">
-                                                    <li class="level2 nav-5-3-1 first"><a href="#" class="level2 ">Mini Pumps</a></li>
-                                                    <li class="level2 nav-5-3-2"><a href="#" class="level2 ">Floor Pumps</a></li>
-                                                    <li class="level2 nav-5-3-3"><a href="#" class="level2 ">CO2 Systems and Accessories</a></li>
-                                                    <li class="level2 nav-5-3-4"><a href="#" class="level2 ">Shock Pumps</a></li>
-                                                    <li class="level2 nav-5-3-5 last"><a href="#" class="level2 ">Pump Accessories</a></li>
-                                                </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="level0 nav-6 last"><a href="#" class="level0 ">Lights</a></li>
+                                        <li class="level0 nav-1 first"><a href="#" class="level0 has-children">Bikes</a></li>
+                                        <li class="level0 nav-2"><a href="#" class="level0 ">Make a Payment</a></li>
+                                        <li class="level0 nav-3"><a href="#" class="level0 ">How It Works</a></li>
+                                        <li class="level0 nav-4"><a href="#" class="level0 ">FAQ's</a></li>
+                                        <li class="level0 nav-5 last"><a href="#" class="level0 has-children">About Us</a></li>
                                     </ul>
                                     <div class="clear"></div>
                                 </div>
@@ -260,611 +179,37 @@
                             <div class="nav-container">
                                 <div class="nav">
                                     <ul id="nav" class="grid-full">
-                                        <li class="level nav-1 first parent  no-level-thumbnail ">
+                                        <li class="level nav-1 no-level-thumbnail ">
                                             <a style="background-color: " href="#">
                                                 <div class="thumbnail"></div>
-                                                <span style="color: ;">Shop by Bike Type</span><span class="spanchildren"></span>
+                                                <span style="color: ;">Bikes</span>
                                             </a>
-                                            <div class="level-top">
-                                                <div class="level  column4" style="width: 930px;">
-                                                    <ul class=" level">
-                                                        <li>
-                                                            <ul class="catagory_children">
-                                                                <li class="li-wrapper">
-                                                                    <div class="level1 nav-1-1 first parent item  no-level-thumbnail " style="width: 25%;">
-                                                                        <a style="" class="catagory-level1" href="#">
-                                                                            <div class="thumbnail"></div>
-                                                                            <span style="color: ;">Road</span><span class="spanchildren"></span>
-                                                                        </a>
-                                                                        <div class="level-top">
-                                                                            <div class="level1  column1">
-                                                                                <ul class="d level1">
-                                                                                    <li class="catagory_children  column1">
-                                                                                        <div class="level2 nav-1-1-1 first  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Racing Road Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-1-2  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Touring Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-1-3  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Track Racing Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-1-4  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Time Trial Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-1-5 last  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Women's Road Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="level1 nav-1-2 parent item  no-level-thumbnail " style="width: 25%;">
-                                                                        <a style="" class="catagory-level1" href="#">
-                                                                            <div class="thumbnail"></div>
-                                                                            <span style="color: ;">Mountain</span><span class="spanchildren"></span>
-                                                                        </a>
-                                                                        <div class="level-top">
-                                                                            <div class="level1  column1">
-                                                                                <ul class="d level1">
-                                                                                    <li class="catagory_children  column1">
-                                                                                        <div class="level2 nav-1-2-6 first  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Dirt Jump Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-2-7  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Downhill Mountain Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-2-8  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Fat Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-2-9  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Trail Mountain Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-2-10 last  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Women's Mountain Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="level1 nav-1-3 parent item  no-level-thumbnail " style="width: 25%;">
-                                                                        <a style="" class="catagory-level1" href="#">
-                                                                            <div class="thumbnail"></div>
-                                                                            <span style="color: ;">City</span><span class="spanchildren"></span>
-                                                                        </a>
-                                                                        <div class="level-top">
-                                                                            <div class="level1  column1">
-                                                                                <ul class="d level1">
-                                                                                    <li class="catagory_children  column1">
-                                                                                        <div class="level2 nav-1-3-11 first  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Gravel Road Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-3-12  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Commuter Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-3-13  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Cyclocross Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-3-14  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Endurance Road Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-3-15 last  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Flat Bar Road Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="level1 nav-1-4 last parent item  no-level-thumbnail " style="width: 25%;">
-                                                                        <a style="" class="catagory-level1" href="#">
-                                                                            <div class="thumbnail"></div>
-                                                                            <span style="color: ;">Children’s</span><span class="spanchildren"></span>
-                                                                        </a>
-                                                                        <div class="level-top">
-                                                                            <div class="level1  column1">
-                                                                                <ul class="d level1">
-                                                                                    <li class="catagory_children  column1">
-                                                                                        <div class="level2 nav-1-4-16 first  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Kid's BMX Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-4-17  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Kid's Road Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-4-18  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Balance Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-4-19  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Kid's Sidewalk Bikes</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-1-4-20 last  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Tricycles</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+
                                         </li>
-                                        <li class="level nav-2  no-level-thumbnail ">
-                                            <a style="background-color: " href="3">
-                                                <div class="thumbnail"></div>
-                                                <span style="color: ;">Bike parts</span>
-                                            </a>
-                                            <div class="level-top">
-                                                <div class="level  column1" style="width: 930px;">
-                                                    <ul class=" level">
-                                                        <li></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="level nav-3  no-level-thumbnail ">
+                                        <li class="level nav-2 no-level-thumbnail ">
                                             <a style="background-color: " href="#">
                                                 <div class="thumbnail"></div>
-                                                <span style="color: ;">Clothes </span>
+                                                <span style="color: ;">Make a Payment</span>
                                             </a>
-                                            <div class="level-top">
-                                                <div class="level  column1" style="width: 930px;">
-                                                    <ul class=" level">
-                                                        <li></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+
                                         </li>
-                                        <li class="level nav-4  no-level-thumbnail ">
+                                        <li class="level nav-3 no-level-thumbnail ">
                                             <a style="background-color: " href="#">
                                                 <div class="thumbnail"></div>
-                                                <span style="color: ;">Pocket</span>
+                                                <span style="color: ;">How It Works</span>
                                             </a>
-                                            <div class="level-top">
-                                                <div class="level  column1" style="width: 930px;">
-                                                    <ul class=" level">
-                                                        <li></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
                                         </li>
-                                        <li class="level nav-5 parent  no-level-thumbnail ">
+                                        <li class="level nav-4 no-level-thumbnail ">
                                             <a style="background-color: " href="#">
                                                 <div class="thumbnail"></div>
-                                                <span style="color: ;">Accessories </span><span class="spanchildren"></span>
+                                                <span style="color: ;">FAQ's</span>
                                             </a>
-                                            <div class="level-top">
-                                                <div class="level  column3" style="width: 930px;">
-                                                    <ul class=" level">
-                                                        <li>
-                                                            <ul class="catagory_children">
-                                                                <li class="li-wrapper">
-                                                                    <div class="level1 nav-5-1 first parent item  no-level-thumbnail " style="width: 33%;">
-                                                                        <a style="" class="catagory-level1" href="#">
-                                                                            <div class="thumbnail"></div>
-                                                                            <span style="color: ;">Saddles</span><span class="spanchildren"></span>
-                                                                        </a>
-                                                                        <div class="level-top">
-                                                                            <div class="level1  column1">
-                                                                                <ul class="d level1">
-                                                                                    <li class="catagory_children  column1">
-                                                                                        <div class="level2 nav-5-1-1 first  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Mountain Bike Saddles</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-5-1-2  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Men's Bike Saddles</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-5-1-3  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Women's Bike Saddles</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-5-1-4  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Road Bike Seatposts</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-5-1-5 last  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Comfort Saddles</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="level1 nav-5-2 parent item  no-level-thumbnail " style="width: 33%;">
-                                                                        <a style="" class="catagory-level1" href="#">
-                                                                            <div class="thumbnail"></div>
-                                                                            <span style="color: ;">Pedals</span><span class="spanchildren"></span>
-                                                                        </a>
-                                                                        <div class="level-top">
-                                                                            <div class="level1  column1">
-                                                                                <ul class="d level1">
-                                                                                    <li class="catagory_children  column1">
-                                                                                        <div class="level2 nav-5-2-6 first  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Mountain Bike Pedals</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-5-2-7  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Road Bike Pedals</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-5-2-8  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Replacement Bike Cleats</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-5-2-9  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Downhill Mountain Pedals</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-5-2-10 last  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Road Bike Pedals</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="level1 nav-5-3 last parent item  no-level-thumbnail " style="width: 33%;">
-                                                                        <a style="" class="catagory-level1" href="#">
-                                                                            <div class="thumbnail"></div>
-                                                                            <span style="color: ;">Pumps</span><span class="spanchildren"></span>
-                                                                        </a>
-                                                                        <div class="level-top">
-                                                                            <div class="level1  column1">
-                                                                                <ul class="d level1">
-                                                                                    <li class="catagory_children  column1">
-                                                                                        <div class="level2 nav-5-3-11 first  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Mini Pumps</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-5-3-12  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Floor Pumps</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-5-3-13  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">CO2 Systems and Accessories</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-5-3-14  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Shock Pumps</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="level2 nav-5-3-15 last  no-level-thumbnail ">
-                                                                                            <a style="background-color: " href="#">
-                                                                                                <div class="thumbnail"></div>
-                                                                                                <span style="color: ;">Pump Accessories</span>
-                                                                                            </a>
-                                                                                            <div class="level-top">
-                                                                                                <div class="level2  column1">
-                                                                                                    <ul class="d level2">
-                                                                                                    </ul>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
                                         </li>
-                                        <li class="level nav-6 last  no-level-thumbnail ">
+                                        <li class="level nav-5 no-level-thumbnail ">
                                             <a style="background-color: " href="#">
                                                 <div class="thumbnail"></div>
-                                                <span style="color: ;">Lights</span>
+                                                <span style="color: ;">About Us</span>
                                             </a>
-                                            <div class="level-top">
-                                                <div class="level  column1" style="width: 930px;">
-                                                    <ul class=" level">
-                                                        <li></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
                                         </li>
                                         <li></li>
                                     </ul>
@@ -877,17 +222,14 @@
                 <div class="skip-container mobile">
                     <div class="container">
                         <div class="skip-links">
-
                             <a href="#header-nav" class="skip-link skip-nav">
                                 <span class="icon"></span>
                                 <span class="label">Menu</span>
                             </a>
-
                             <a href="#header-search" class="skip-link skip-search">
                                 <span class="icon"></span>
                                 <span class="label">Search</span>
                             </a>
-
                             <div id="header-search" class="skip-content">
                                 <form id="search_mini_form" action="catalog-search-results.html" method="get">
                                     <div class="input-box">
@@ -898,40 +240,18 @@
                                     <div id="search_autocomplete" class="search-autocomplete"></div>
                                 </form>
                             </div>
-
-                            <a href="#" data-target-element="#header-account" class="skip-link skip-account">
+                            <a href="#" data-target-element="#header-account" class="skip-link skip-account last">
                                 <span class="icon"></span>
                                 <span class="label">Account</span>
                             </a>
 
-                            <div id="header-account" class="skip-content">
+                             <div id="header-account" class="skip-content">
                                 <div class="links">
                                     <ul>
                                         <li class="first"><a href="#" title="My Account" class="my-account-link">My Account</a></li>
-                                        <li><a href="#" title="My Wishlist" class="wishlist-link">My Wishlist</a></li>
-                                        <li><a href="#" title="My Cart" class="top-link-cart">My Cart</a></li>
-                                        <li><a href="#" title="Checkout" class="top-link-checkout">Checkout</a></li>
-                                        <li><a href="customer/account/create/" title="Register" class="register-link">Register</a></li>
-                                        <li class=" last"><a href="customer/account/login/" title="Log In" class="log-in-link">Log In</a></li>
+                                        <li><a href="user-registration.html?register" title="Register" class="register-link">Register</a></li>
+                                        <li class=" last"><a href="user-login.html?login" title="Log In" class="log-in-link">Log In</a></li>
                                     </ul>
-                                </div>
-                            </div>
-
-                            <div class="header-minicart mobile">
-                                <a href="#" data-target-element="#header-cart-mobile" class="skip-link skip-cart  no-count">
-                                    <span class="icon"></span>
-                                    <span class="label">Cart</span>
-                                    <span class="count">0</span>
-                                </a>
-                                <div id="header-cart-mobile" class="block block-cart skip-content">
-                                    <div id="Div2" class="minicart-message"></div>
-                                    <div id="Div3" class="minicart-message"></div>
-                                    <div class="minicart-wrapper">
-                                        <p class="block-subtitle">
-                                            Recently added item(s) <a class="close skip-link-close material-design-cancel19" href="#" title="Close"></a>
-                                        </p>
-                                        <p class="empty">You have no items in your shopping cart.</p>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -959,7 +279,7 @@
                                 <div class="row">
                                     <!-- outer product and login/register container-->
                                     <div class="col-main col-xs-12 col-sm-9">
-                                        <div class="youama-ajaxlogin-loader">
+                                        <div class="youama-ajaxlogin-loader main-login-loader">
                                         </div>
                                         <!-- login modal container-->
                                         <div class="youama-login-window">
@@ -1106,7 +426,7 @@
                                             <div class="ytmpa-nolicence">Terms and Conditions are required!</div>
                                             <div class="ytmpa-wronglogin">Email or Password is wrong!</div>
                                         </div>
-            <div class="page-title">
+                                        <div class="page-title">
                                             <h1>Search results for '<span id="containerPageTitle">Bikes</span>'</h1>
                                         </div>
 
@@ -1439,137 +759,85 @@
                             </div>
                         </div>
                     </div>
-        </div>
-    </div>
-    <div class="footer-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="brands_list">
-                        <ul>
-                            <li><a href="#">
-                                <img src="../content/images/brand1.gif" alt="" /></a></li>
-                            <li><a href="#">
-                                <img src="../content/images/brand2.gif" alt="" /></a></li>
-                            <li><a href="#">
-                                <img src="../content/images/brand3.gif" alt="" /></a></li>
-                            <li><a href="#">
-                                <img src="../content/images/brand4.gif" alt="" /></a></li>
-                            <li><a href="#">
-                                <img src="../content/images/brand5.gif" alt="" /></a></li>
-                            <li><a href="#">
-                                <img src="../content/images/brand6.gif" alt="" /></a></li>
-                        </ul>
-                    </div>
-                    <div class="footer">
-                        <p id="back-top"><a href="#top"><span></span></a></p>
-                        <div class="footer_info">
-                            <div class="f_logo">
-                                <a href="index.html">
-                                    <img src="../content/images/f_logo.png" alt="" /></a>
-                            </div>
-                            <p>
-                                Our store is more than just another average online retailer. We sell not only top quality products, but give our customers a positive online shopping experience. Forget about struggling to do everything at once: taking care of the family, running your business, walking your dog, cleaning the house, doing the shopping, etc. Purchase the goods you need every day or just like in a few clicks or taps, depending on the device you use to access the Internet. We work to make your life more enjoyable.
-The variety of products available at our store at the moment is vast, but we still continue to widen our assortment. We monitor the relevant market niche on regular basis to keep our prices competitive. Buying form us you can be sure that you’ll get the product you have offered quickly and hassle-free. We value our reputation of the trustworthy merchant and never upset our clients.
-                            </p>
-                        </div>
-                        <div class="footer-cols-wrapper">
-                            <div class="footer-col">
-                                <h4>Information</h4>
-                                <div class="footer-col-content">
-                                    <ul>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Customer Service</a></li>
-                                        <li><a href="#">Template Settings</a></li>
-                                        <li class="last privacy"><a href="#">Privacy Policy</a></li>
-                                    </ul>
-                                    <div class="links">
-                                        <ul>
-                                            <li class="first"><a href="#" title="Site Map">Site Map</a></li>
-                                            <li><a href="#" title="Search Terms">Search Terms</a></li>
-                                            <li><a href="#" title="Advanced Search">Advanced Search</a></li>
-                                            <li><a href="#" title="Orders and Returns">Orders and Returns</a></li>
-                                            <li class=" last"><a href="#" title="Contact Us">Contact Us</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="footer-col">
-                                <h4>Why buy from us</h4>
-                                <div class="footer-col-content">
-                                    <ul>
-                                        <li><a href="#">Shipping & Returns</a></li>
-                                        <li><a href="#">Secure Shopping</a></li>
-                                        <li><a href="#">International Shipping</a></li>
-                                        <li><a href="#">Affiliates</a></li>
-                                        <li><a href="#">Group Sales</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="footer-col">
-                                <h4>My account</h4>
-                                <div class="footer-col-content">
-                                    <ul>
-                                        <li><a href="#">Sign In</a></li>
-                                        <li><a href="#">View Cart</a></li>
-                                        <li><a href="#">My Wishlist</a></li>
-                                        <li><a href="#">Track My Order</a></li>
-                                        <li><a href="#">Help</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="footer-col last">
-                                <h4>Contacts</h4>
-                                <div class="footer-col-content">
-                                    <div class="footer_address">
-                                        8901 Marmora Road,<br />
-                                        Glasgow, D04 89GR
-                                                <span class="tel">1(234) 567-8901</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="clear"></div>
-                        <div class="footer_bottom">
-                            <address>
-                                &copy;
-                                        <script type="text/javascript">var mdate = new Date(); document.write(mdate.getFullYear());</script>
-                                Magento Demo Store. All Rights Reserved.
-                            </address>
-                            <div class="socials">
-                                <a href="#"><span class="fa fa-facebook"></span></a>
-                                <a href="#"><span class="fa fa-twitter"></span></a>
-                                <a href="#"><span class="fa fa-google-plus"></span></a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="newsletterpopup" aria-hidden="true" id="newsletterpopup">
-        <div class="modal-dialog">
-            <div class="newsletterpopup-content">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true"><i class="fa fa-times"></i></span><span class="sr-only">Close</span>
-                </button>
-                <div class="newsletterpopup-indent">
-                    <div class="modal-body">
-                        <div class="newsletter-title">Newsletter</div>
-                        <div class="newsletter-slogan">Subscribe to the Extreme mailing list to receive information on new arrivals, specials and discounts</div>
-                        <form action="#" method="post" id="newsletter-validate-detail2">
-                            <div class="block-content">
-                                <div class="form-group">
-                                    <input type="text" name="email" id="newsletter-popup" title="Sign up for our newsletter" class="input-text required-entry validate-email" />
+            <div class="footer-container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="brands_list">
+                                <ul>
+                                    <li><a href="#">
+                                        <img src="../content/images/brand1.gif" alt="" /></a></li>
+                                    <li><a href="#">
+                                        <img src="../content/images/brand2.gif" alt="" /></a></li>
+                                    <li><a href="#">
+                                        <img src="../content/images/brand3.gif" alt="" /></a></li>
+                                    <li><a href="#">
+                                        <img src="../content/images/brand4.gif" alt="" /></a></li>
+                                    <li><a href="#">
+                                        <img src="../content/images/brand5.gif" alt="" /></a></li>
+                                    <li><a href="#">
+                                        <img src="../content/images/brand6.gif" alt="" /></a></li>
+                                </ul>
+                            </div>
+                            <div class="footer">
+                                <p id="back-top"><a href="#top"><span></span></a></p>
+                                <div class="footer_info">
+                                    <div class="f_logo">
+                                        <a href="#">
+                                            <img src="../content/images/f_logo.png" alt="Rental Bikes" /></a>
+                                    </div>
+                                    <p>
+                                        Our Service is more than just online bikes provider. 
+                                        We give our customers a positive online bike rent experience. 
+                                        We work to make your life more enjoyable.
+                                        The variety of bikes available at our site at the moment is vast, 
+                                        but we still continue to widen our assortment. 
+                                        We monitor the relevant market niche on regular basis to keep our prices competitive. 
+                                        Renting a bike form us you can be sure that you’ll get the bike you have offered quickly and hassle-free. We value our reputation of the trustworthy merchant and never upset our clients.
+                                    </p>
                                 </div>
-                                <div class="actions">
-                                    <button type="submit" title="Subscribe" class="button" name="newsletter_submit"><span><span>Subscribe</span></span></button>
+                                <div class="footer-cols-wrapper">
+                                    <div class="footer-col">
+                                        <h4>Information</h4>
+                                        <div class="footer-col-content">
+                                            <ul>
+                                                <li><a href="#">About Us</a></li>
+                                                <li><a href="#">Customer Service</a></li>
+                                                <li class="last privacy"><a href="#">Cancellation Policy</a></li>
+                                                <li><a href="#" title="Orders and Returns">Orders</a></li>
+                                                <li class=" last"><a href="#" title="Contact Us">Contact Us</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="footer-col">
+                                        <h4>My account</h4>
+                                        <div class="footer-col-content">
+                                            <ul>
+                                                <li><a href="user-login.html">Log In</a></li>
+                                                <li><a href="user-registration.html">Register</a></li>
+                                                <li><a href="#">Help</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="footer_bottom">
+                                    <address>
+                                        &copy;
+                                        <script type="text/javascript">var mdate = new Date(); document.write(mdate.getFullYear());</script>
+                                        Rental Bikes. All Rights Reserved.
+                                    </address>
+                                    <div class="socials">
+                                        <a href="#"><span class="fa fa-facebook"></span></a>
+                                        <a href="#"><span class="fa fa-twitter"></span></a>
+                                        <a href="#"><span class="fa fa-google-plus"></span></a>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
