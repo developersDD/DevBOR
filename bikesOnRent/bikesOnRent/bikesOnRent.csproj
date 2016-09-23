@@ -125,6 +125,7 @@
     <Content Include="bikesonrent\content\images\f_logo.png" />
     <Content Include="bikesonrent\content\images\ibera_bicycle_lightweight_aluminum_water_bottle_cage_2.png" />
     <Content Include="bikesonrent\content\images\ibera_bicycle_seatpost-mounted_commuter_carrier_ib-ra1_1.png" />
+    <Content Include="bikesonrent\content\images\icon_sprite.png" />
     <Content Include="bikesonrent\content\images\loader.gif" />
     <Content Include="bikesonrent\content\images\logo.png" />
     <Content Include="bikesonrent\content\images\opc-ajax-loader.gif" />

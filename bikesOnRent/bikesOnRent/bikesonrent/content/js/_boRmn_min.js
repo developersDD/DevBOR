@@ -11,6 +11,9 @@
 
     //initialize loginForm
     var dataForm = new VarienForm('login-form', true);
+
+    //initialize registerForm
+    var dataForm = new VarienForm('register-form', true);
 });
 
 //toggle remember me.s

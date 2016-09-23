@@ -27,4 +27,16 @@
     z-index: 9999;
    background: url("../images/opc-ajax-loader.gif") no-repeat center center;
 }
+.main-registerPage-loader {
+    display:none;
+    position: absolute;
+    top: 50%;
+    left: 32%;
+    margin-left: -25px;
+    margin-top: -15px;
+    height: 50px;
+    width: 50px;
+    z-index: 9999;
+   background: url("../images/opc-ajax-loader.gif") no-repeat center center;
+}
 

@@ -261,7 +261,7 @@
                             <div class="main">
                                 <div class="col-main">
                                     <div class="padding-s">
-                                        <div class="youama-ajaxlogin-loader main-login-loader">
+                                        <div class="youama-ajaxlogin-loader main-login-loader main-register-loader">
                                         </div>
                                         <div class="youama-login-window">
                                             <div class="youama-window-outside">
@@ -394,15 +394,15 @@
                                             <div class="ytmpa-wronglogin">Email or Password is wrong!</div>
                                         </div>
 
-                                        <div class="main-loginPage-loader">
+                                        <div class="main-registerPage-loader">
                                         </div>
                                         <div class="account-create">
                                             <div class="page-title">
                                                 <h1>Create an Account</h1>
                                             </div>
-                                            <form id="login-form" class="scaffold-form">
+                                            <form id="register-form" class="scaffold-form">
                                                 <div class="row">
-                                                    <div class="col-2 registered-users col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                                                    <div class="col-2 registered-users col-xs-12 col-sm-12 col-md-8 col-lg-8" id="registerPageInnerBox">
                                                         <div class="theme-block">
                                                             <div class="content fieldset">
                                                                 <h2>New Here?</h2>
@@ -412,7 +412,7 @@
                                                                     <li class="fields">
                                                                     <li class="fields">
                                                                         <div class="row">
-                                                                            <div class="col-lg-12 col-xs-12  field">
+                                                                            <div class="col-lg-12 col-xs-12 field">
                                                                                 <label for="name" class="required"><em>*</em>Name</label>
                                                                                 <div class="input-box">
                                                                                     <input type="text" id="name" name="name" value="" title="Name" maxlength="255" class="input-text required-entry" />
@@ -422,7 +422,7 @@
 
                                                                         <div class="row">
                                                                             <div class="col-lg-6 col-xs-12  field">
-                                                                                <label for="email_address" class="required"><em>*</em>Email Address</label>
+                                                                                <label for="email_address" class="required"><em>*</em>Email Address/Username</label>
                                                                                 <div class="input-box">
                                                                                     <input type="email" autocapitalize="off" autocorrect="off" spellcheck="false" name="email" id="email_address" value="" title="Email Address" class="input-text validate-email required-entry" />
                                                                                 </div>
@@ -433,6 +433,20 @@
                                                                                     <input type="text" autocapitalize="off" autocorrect="off" spellcheck="false" name="mobile" id="mobile" value="" title="mobile" class="input-text validate-mobile-indian required-entry" />
                                                                                 </div>
                                                                             </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-xs-12 field">
+                                                                                <label for="address" class="required"><em>*</em>Address</label>
+                                                                                <div class="input-box">
+                                                                                    <textarea name="address" id="address" title="Address" class="input-text required-entry"></textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                             <div class="col-lg-6 col-xs-12 field">
+                                                                                    <label for="username" class="required"><em>*</em>Username</label>
+                                                                                    <div class="input-box">
+                                                                                        <input type="text" name="username" id="username" title="Username" class="input-text required-entry" />
+                                                                                    </div>
+                                                                                </div>
                                                                         </div>
                                                                         <div class="row">
                                                                              <div class="col-lg-6 col-xs-12 field">
@@ -446,8 +460,6 @@
                                                                                 <div class="input-box">
                                                                                     <input type="password" name="confirmation" title="Confirm Password" id="confirmation" class="input-text required-entry validate-cpassword" />
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-xs-12 field name-lastname">
                                                                             </div>
                                                                         </div>
                                                                     </li>
@@ -466,7 +478,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="buttons-set">
-                                                                <button type="submit" title="Register" class="button"><span><span>Register</span></span></button>
+                                                                <button type="submit" title="Register" class="button" id="btnRegister"><span><span>Register</span></span></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -487,11 +499,6 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <script type="text/javascript">
-                                                //<![CDATA[
-                                                var dataForm = new VarienForm('form-validate', true);
-                                                //]]>
-                                            </script>
                                         </div>
                                     </div>
                                 </div>
@@ -583,7 +590,7 @@
         </div>
     </div>
     <script>
-        jQuery('#login-form').on('submit', function (e) {
+        jQuery('#register-form').on('submit', function (e) {
             e.preventDefault();
         })
     </script>

@@ -1,7 +1,6 @@
 ﻿jQuery(document).ready(function () {
     var bknm = getParameterByName('bikename');
-    var srchurl = "http://192.168.0.11/BikesOnRent1/services/services.php";
-    _getSearchedProductResults(srchurl, bknm);
+    _getSearchedProductResults(hostURL, bknm);
     //set page titles.
     setPageTitles(bknm);
 });

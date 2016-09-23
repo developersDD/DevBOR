@@ -25,9 +25,9 @@ function updateNewProducts(dt) {
                              '<a class="btns next_new"><span class="fa fa-caret-right"></span></a>' +
                              '</div><div class="owl-carousel-wrapper owl-new-products">' +
                              '<div class="owl-carousel owl-new" id="owl-new-products"></div></div>');
-    var data = JSON.parse(dt);
+    var data =JSON.parse(dt);
     for (var i = 0; i < data.length; i++) {
-        jQuery("#owl-new-products").append('<div class="item index_item"><div class="item_wrap"><a href="#" title='+data[i].name+'" class="product-image">' +
+        jQuery("#owl-new-products").append('<div class="item index_item"><div class="item_wrap"><a href="#" title='+data[i].name+' class="product-image">' +
                         '<img src="../content/images/bike1.png" alt="' + data[i].name + '" /></a>' +
                         '<div class="product-shop"><h1 class="product-name"><a href="#" title="' + data[i].name + '" itemprop="name">' + data[i].name + '</a></h3>' +
                         '<div class="price-box" itemprop="offers" itemscope itemtype="#"><span class="regular-price" itemprop="price" id="product-price-19-new">' +

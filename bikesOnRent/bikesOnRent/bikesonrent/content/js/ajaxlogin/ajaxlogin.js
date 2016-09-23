@@ -4,11 +4,10 @@
  * NOTICE OF LICENSE
  *
 /* This source file is subject to the user login and registration.*/
-(function($) {
+(function ($) {
     $.fn.youamaAjaxLogin = function(options) {
         var opts = $.extend({}, $.fn.youamaAjaxLogin.defaults, options);
         return start();
-
         /**
          * Init.
          */
@@ -70,11 +69,12 @@
                 return false;
             });
             // Open login window by back-link on customer/account/forgotpassword
-            $('a[href*="user-login.html?login"]').click(function() {
+            $('a[href*="user-login.html?login"]').click(function () {
                 $('.skip-links2 .skip-account2').trigger('click');
-                $('div.shadow').addClass('active-form');
-                heightWidthForm();
-                $("#header-account2").css({ "width": "450px" ,"left":"45%"});
+                animateCloseWindow('register', false, false);
+                animateShowWindow('login');
+                $("#header-account2").css({ "width": "450px", "left": "45%" });
+                return false;
 
             });
             // Switching between Login and Register windows
@@ -144,7 +144,7 @@
                 if (opts.errors != ''){
                     setError(opts.errors, 'register');
                 } else {
-                    callAjaxControllerRegistration();
+                    callAjaxControllerRegistration('register');
                 }
                 return false;
             });
@@ -183,6 +183,14 @@
                     callAjaxControllerLogin('loginPage');
                 }
             });
+
+            //registration from login page
+            $('#btnRegister').on('click', function () {
+                var dataForm = new VarienForm('register-form', true);
+                if (dataForm.validator && dataForm.validator.validate()) {
+                    callAjaxControllerRegistration('registerPage');
+                }
+            });
         }
 
         /**
@@ -205,14 +213,14 @@
                 $('.main-'+ windowName +'-loader').fadeIn();
                 $('.youama-' + windowName + '-window')
                     .animate({ opacity: '0.4' });
-                $('#loginPageInnerBox')
+                $('#'+windowName+'InnerBox')
                     .animate({ opacity: '0.4' });
             // Stop
             } else {
                 $('.main-' + windowName + '-loader').fadeOut('normal', function () {
                     $('.youama-' + windowName + '-window')
                         .animate({ opacity: '1' });
-                    $('#loginPageInnerBox')
+                    $('#' + windowName + 'InnerBox')
                     .animate({ opacity: '1' });
                 });
             }
@@ -395,68 +403,111 @@
         /**
          * Ajax call for registration.
          */
-        function callAjaxControllerRegistration() {
+        function callAjaxControllerRegistration(windowName) {
             var mregdet = new Object();
             var regdet = new Object();
-            mregdet.name = "Rohan";
-            mregdet.address = "Shirdi";
-            mregdet.email = "rbk@gmail.com";
-            mregdet.mob = "9858985878";
-            mregdet.offcadd = "Shirdi";
-            regdet.ownerDetails = ownerDetails1;
-            var ownerDetails = JSON.stringify(d);
-            // If there is no another ajax calling
-            if (opts.stop != true) {
-                opts.stop = true;
-                // Load the Loader
-                animateLoader('register', 'start');
-                // Send data
-                var ajaxRegistration = jQuery.ajax({
-                    url: opts.controllerUrl,
-                    type: 'POST',
-                    data:ownerDetails,
-                    //data: {
-                    //ajax : 'register',
-                    //    firstname : opts.firstname,
-                    //    lastname : opts.lastname,
-                    //    newsletter : opts.newsletter,
-                    //    email : opts.email,
-                    //    password : opts.password,
-                    //    passwordsecond : opts.passwordsecond,
-                    //    licence : opts.licence,
-                    //},
-                    dataType: "json",
-                    contentType:"application/json"
-                });
-                // Get data
-                ajaxRegistration.done(function (msg) {
-                    // If there is error
-                    if (msg != 'success' && msg != 'confirm') {
-                        setError(msg, 'register');
-                    // If everything are OK
-                    } else {
-                        opts.stop = false;
-                        animateCloseWindow('register', false, true);
-                        if(msg == 'confirm'){
-                           animateShowWindow('confirmmsg');
-                           //
-                        }else 
-                        // Redirect
-                        if (opts.redirection == '1') {
-                            window.location = opts.profileUrl;
-                        } else {
-                            window.location.reload();
-                        }
-                    }
-                    animateLoader('register', 'stop');
-                    opts.stop = false;
-                });
-                // Error on ajax call
-                ajaxRegistration.fail(function(jqXHR, textStatus, errorThrown) {
-                    opts.stop = false;
-                    animateLoader('register', 'stop');
-                });
+            if (windowName == 'register') {
+                mregdet.name = "Rohan";
+                mregdet.address = "Shirdi";
+                mregdet.email = "rbk@gmail.com";
+                mregdet.mobile = "9858985878";
+                mregdet.username = "sai";
+                mregdet.password = "sai123123";
+                mregdet.doc_submitted = "";
+                regdet.userDetails = mregdet;
+                var userDetails = JSON.stringify(regdet);
+                // If there is no another ajax calling
+                if (opts.stop != true) {
+                    opts.stop = true;
+                    // Load the Loader
+                    animateLoader('register', 'start');
+                    // Send data
+                    jcnlGlobalAjax(mthdP, userDetails, opts.controllerUrl, callAjaxControllerRegisterSuccess, callAjaxRControllerFailed);
+                }
+            } else {
+                mregdet.name = $('#name').val();
+                mregdet.address = $('#address').val();
+                mregdet.email = $('#email_address').val();
+                mregdet.mobile = $('#mobile').val();
+                mregdet.username = $('#username').val();
+                mregdet.password = $('#password').val();
+                mregdet.doc_submitted = "";
+                regdet.userDetails = mregdet;
+                var userDetails = JSON.stringify(regdet);
+                animateLoader('registerPage', 'start');
+                jcnlGlobalAjax(mthdP, userDetails, opts.controllerUrl, callAjaxControllerRegisterPageSuccess, callAjaxRControllerPageFailed);
             }
+        }
+
+        /**
+        * success call for register - modal.
+        */
+        function callAjaxControllerRegisterSuccess(msg) {
+            var response = JSON.parse(msg);
+            // If there is error
+            if (response.msg != 'Success') {
+                alert("Registration Failed!");
+                // If everything are OK
+            } else {
+                opts.stop = false;
+                animateCloseWindow('register', false, true);
+                if (response.msg == 'Success') {
+                    setTimeout(
+                    animateShowWindow('confirmmsg'),
+                    3000);
+                } else {
+                    // Redirect
+                    if (opts.redirection == '1') {
+                        window.location = opts.profileUrl;
+                        sessionStorage.setItem("user", response.userId);
+                    } else {
+                        window.location.reload();
+                        sessionStorage.setItem("user", response.userId);
+                    }
+                }
+            }
+            animateLoader('register', 'stop');
+            opts.stop = false;
+        }
+
+        /**
+       * success call for register - page.
+       */
+        function callAjaxControllerRegisterPageSuccess(msg) {
+            var response = JSON.parse(msg);
+            // If there is error
+            if (response.msg != 'Success') {
+                alert("Registration Failed!");
+                // If everything are OK
+            } else {
+                opts.stop = false;
+                animateCloseWindow('register', false, true);
+                if (response.msg == 'Success') {
+                    animateShowWindow('confirmmsg');
+                } else {
+                    // Redirect
+                        window.location = opts.profileUrl;
+                        sessionStorage.setItem("user", response.userId)
+                }
+            }
+            animateLoader('registerPage', 'stop');
+            opts.stop = false;
+        }
+
+        /**
+        * failure call for registration - modal.
+        */
+        function callAjaxRControllerFailed(msg) {
+            opts.stop = false;
+            animateLoader('register', 'stop');
+        }
+
+        /**
+        * failure call for registration - page.
+        */
+        function callAjaxRControllerPageFailed(msg) {
+            opts.stop = false;
+            animateLoader('registerPage', 'stop');
         }
 
         /**
@@ -476,7 +527,7 @@
                     // Load the Loader
                     animateLoader('login', 'start');
                     // Send data
-                    jcnlGlobalAjax(mthdP, loginDetails, opts.controllerUrl, callAjaxControllerLoginSuccess, callAjaxLRControllerFailed);
+                    jcnlGlobalAjax(mthdP, loginDetails, opts.controllerUrl, callAjaxControllerLoginSuccess, callAjaxLControllerFailed);
                 }
             } else {
                 lgdt1.username = $('#email').val();
@@ -484,7 +535,7 @@
                 lgdt.loginDetails = lgdt1;
                 var loginDetails = JSON.stringify(lgdt);
                 animateLoader('loginPage', 'start');
-                jcnlGlobalAjax(mthdP, loginDetails, opts.controllerUrl, callAjaxControllerLoginPageSuccess, callAjaxLRControllerPageFailed);
+                jcnlGlobalAjax(mthdP, loginDetails, opts.controllerUrl, callAjaxControllerLoginPageSuccess, callAjaxLControllerPageFailed);
             }
             
         }
@@ -496,7 +547,8 @@
             var response = JSON.parse(msg);
             // // If there is error
             if (response.msg != 'Success') {
-                setError('wronglogin,', 'login');
+                alert("Invalid Username/Password!");
+                //setError('wronglogin,', 'login');
                 // If everything are OK
             } else {
                 opts.stop = false;
@@ -535,7 +587,7 @@
         /**
         * failure call for login/registration - modal.
         */
-        function callAjaxLRControllerFailed(msg){
+        function callAjaxLControllerFailed(msg){
             opts.stop = false;
             animateLoader('login', 'stop');
         }
@@ -543,7 +595,7 @@
         /**
         * failure call for login/registration -page.
         */
-        function callAjaxLRControllerPageFailed(msg) {
+        function callAjaxLControllerPageFailed(msg) {
             opts.stop = false;
             animateLoader('loginPage', 'stop');
         }
