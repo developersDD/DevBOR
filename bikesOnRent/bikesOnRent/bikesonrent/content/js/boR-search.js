@@ -1,5 +1,6 @@
-﻿jQuery(document).ready(function () {
-    var bknm = getParameterByName('bikename');
+﻿var ttlpg, pg;
+jQuery(document).ready(function () {
+    var bknm = getParameterByName(queryParamBikeByName);
     _getSearchedProductResults(hostURL, bknm);
     //set page titles.
     setPageTitles(bknm);
@@ -19,12 +20,13 @@ function getParameterByName(name, url) {
 
 
 function _getSearchedProductResults(url, element) {
-    url += "?bikename=" + element + "";
+    url += queryDelimeter + queryParamBikeByName + equalsOperator + element;
     //ajax call
     jcnlGlobalAjax(mthdG,null,url,updateProducts,updateProductsFailure);
 }
 
 function updateProducts(dt) {
+    setPaginationData();
     var bk_dt = JSON.parse(dt);
     if (bk_dt == "No Data Found") {
         updateProductsFailure(dt);
@@ -70,4 +72,13 @@ function updateProductsFailure(dt) {
 }
 
 
-
+function setPaginationData() {
+    jQuery('#pagination-content').bootpag({
+        total: 10,
+        page: 1,
+        maxVisible: 5
+    }).on("page", function (event, page) {
+        alert(page);
+        // some ajax content loading...
+    });
+}

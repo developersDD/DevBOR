@@ -59,6 +59,8 @@
   <ItemGroup>
     <Content Include="bikesonrent\content\css\ajaxlogin\ajaxlogin.css" />
     <Content Include="bikesonrent\content\css\bootstrap.css" />
+    <Content Include="bikesonrent\content\css\bootstrap.min.css" />
+    <Content Include="bikesonrent\content\js\bootpag\jquery.bootpag.min.js" />
     <Content Include="bikesonrent\content\css\_boRmn_min.css" />
     <Content Include="bikesonrent\content\css\easydropdown.css" />
     <Content Include="bikesonrent\content\css\font-awesome.css" />
@@ -199,7 +201,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="bikesonrent\content\css\bootpage\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

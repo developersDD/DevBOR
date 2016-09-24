@@ -100,12 +100,12 @@
     z-index: 999;
 }
 
-.btn-remove:hover::after, .btn-previous:hover::after, .sorter > .sort-by .sort-by-switcher:hover, .sorter > .view-mode a.grid:hover, .sorter > .view-mode a.list:hover, .pages ol li a:hover {
+.btn-remove:hover::after, .btn-previous:hover::after, .sorter > .sort-by .sort-by-switcher:hover, .sorter > .view-mode a.grid:hover, .sorter > .view-mode a.list:hover, .pages ul li a:hover {
     box-shadow: 0px 3px 7px 0px rgba(0,0,0,0.2);
     z-index: 999;
 }
 
-.btn-remove:active::after, .btn-previous:active::after, .sorter > .sort-by .sort-by-switcher:active, .sorter > .view-mode a.grid:active, .sorter > .view-mode a.list:active, .pages ol li a:active {
+.btn-remove:active::after, .btn-previous:active::after, .sorter > .sort-by .sort-by-switcher:active, .sorter > .view-mode a.grid:active, .sorter > .view-mode a.list:active, .pages ul li a:active {
     opacity: 0.8;
 }
 
@@ -2112,14 +2112,14 @@ span.weee {
         display: none;
     }
 
-    .pages li {
+    .pages ul li {
         display: inline-block;
         margin: 0;
         float: left;
         position: relative;
     }
 
-    .pages ol li a, .pages ol li.current {
+    .pages ul li a, .pages ul .current{
         display: inline-block;
         border: 0;
         font-size: 14px;
@@ -2136,38 +2136,38 @@ span.weee {
         transition: all,0.3s,ease-in-out;
     }
 
-        .pages ol li a.next, .pages ol li.current.next {
+        .pages ul .next, .pages ul .current {
             border-right: none;
         }
 
-    .pages ol li a {
+    .pages ul li a {
         color: #8b8b8b;
         background-color: #f5f5f5;
     }
 
-        .pages ol li a:hover {
+        .pages ul li a:hover {
             color: #333;
             background-color: #EDEDED;
         }
 
-    .pages ol li.current, .pages ol li.current a {
+    .pages ul .current, .pages ul .current a {
         color: #333;
         background-color: #EDEDED;
     }
 
-    .pages .next, .pages .previous {
+    .pages .next a, .pages .prev a {
         font: 0/0 a;
         text-shadow: none;
         position: relative;
     }
 
-        .pages .next:before, .pages .previous:before {
+        .pages .next a:before, .pages .prev a:before {
             color: #009587;
             font-size: 18px;
             line-height: 50px;
         }
 
-        .pages .next:before {
+        .pages .next a:before {
             display: inline-block;
             font-family: "material-design";
             text-rendering: auto;
@@ -2177,7 +2177,7 @@ span.weee {
             content: "";
         }
 
-        .pages .previous:before {
+        .pages .prev a:before {
             display: inline-block;
             font-family: "material-design";
             text-rendering: auto;
@@ -2185,6 +2185,9 @@ span.weee {
             -moz-osx-font-smoothing: grayscale;
             transform: translate(0, 0);
             content: "";
+        }
+        .pages .disable {
+            cursor:not-allowed;
         }
 
 .toolbar-bottom .toolbar {
@@ -2212,13 +2215,13 @@ span.weee {
         float: left;
     }
 
-        .pages ol li a, .pages ol li.current {
+        .pages ul li a, .pages ul .current {
             width: 30px;
             height: 30px;
             line-height: 30px;
         }
 
-        .pages .next:before, .pages .previous:before {
+        .pages .next a:before, .pages .prev a:before {
             line-height: 30px;
         }
 

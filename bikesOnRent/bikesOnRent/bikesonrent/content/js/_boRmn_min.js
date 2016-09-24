@@ -35,7 +35,7 @@ function rememberMeLogin() {
 
 jQuery(window).load(function () {
     //login-register initialization
-    jQuery().youamaAjaxLogin({
+    jQuery().rentalbikesAjaxLogin({
         redirection: '0',
         profileUrl: ajaxLoginSURL,
         autoShowUp: 'no',

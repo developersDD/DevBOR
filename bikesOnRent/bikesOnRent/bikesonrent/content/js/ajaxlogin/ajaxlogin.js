@@ -5,8 +5,8 @@
  *
 /* This source file is subject to the user login and registration.*/
 (function ($) {
-    $.fn.youamaAjaxLogin = function(options) {
-        var opts = $.extend({}, $.fn.youamaAjaxLogin.defaults, options);
+    $.fn.rentalbikesAjaxLogin = function(options) {
+        var opts = $.extend({}, $.fn.rentalbikesAjaxLogin.defaults, options);
         return start();
         /**
          * Init.
@@ -26,10 +26,10 @@
          * Add windows from Ajaxlogin view to RWD dropdown include the Loader.
          */
         function replaceAjaxWindows() {
-            var loginWindow = $('.youama-login-window');
-            var registerWindow = $('.youama-register-window');
-            var loader = $('.youama-ajaxlogin-loader');
-            var confirmMsg = $('.youama-confirmmsg-window');
+            var loginWindow = $('.rentalbikes-login-window');
+            var registerWindow = $('.rentalbikes-register-window');
+            var loader = $('.rentalbikes-ajaxlogin-loader');
+            var confirmMsg = $('.rentalbikes-confirmmsg-window');
             $('#header-account2').html(loginWindow);
             $('#header-account2').append(registerWindow);
             $('#header-account2').append(loader);
@@ -59,8 +59,8 @@
             // Login open and close - click
             $('.skip-links2 .skip-account2').on('click', function() {
                 // Close
-                if ($('.youama-login-window').css('display') != 'none'
-                    || $('.youama-register-window').css('display') != 'none') {
+                if ($('.rentalbikes-login-window').css('display') != 'none'
+                    || $('.rentalbikes-register-window').css('display') != 'none') {
                     animateCloseWindow('login', false, false);
                 // Open
                 } else {
@@ -104,20 +104,20 @@
                 return false;
             });
             // Close login window by user
-            $('.youama-login-window .close').click(function () {
+            $('.rentalbikes-login-window .close').click(function () {
                 animateCloseWindow('login', true, true);
                 $('div.shadow').removeClass('active-form');
                  $('body').removeClass('ind');
             });
             // Close register window by user
-            $('.youama-register-window .close').click(function() {
+            $('.rentalbikes-register-window .close').click(function() {
                 animateCloseWindow('register', true, true);
                 $('div.shadow').removeClass('active-form');
                  $('body').removeClass('ind');
             });
 
             // Close confirmMsg window by user
-            $('.youama-confirmmsg-window .close').click(function() {
+            $('.rentalbikes-confirmmsg-window .close').click(function() {
                 animateCloseWindow('confirmmsg', true, true);
                 $('div.shadow').removeClass('active-form');
                  $('body').removeClass('ind');
@@ -138,7 +138,7 @@
          */
         function sendEvents() {
             // Click to register in Register window
-            $('.youama-register-window button').on('click', function() {
+            $('.rentalbikes-register-window button').on('click', function() {
                 setDatas('register');
                 validateDatas('register');
                 if (opts.errors != ''){
@@ -152,7 +152,7 @@
             // Press enter in login window
             $(document).keypress(function(e) {
                 if (e.which == 13
-                    && $('.youama-login-window').css('display') == 'block') {
+                    && $('.rentalbikes-login-window').css('display') == 'block') {
                     setDatas('login');
                     validateDatas('login');
                     if (opts.errors != '') {
@@ -165,7 +165,7 @@
             });
 
             // Click on login in Login window
-            $('.youama-login-window button').on('click', function() {
+            $('.rentalbikes-login-window button').on('click', function() {
                 setDatas('login');
                 validateDatas('login');
                 if (opts.errors != '') {
@@ -198,7 +198,7 @@
          * @param string windowName
          */
         function animateShowWindow(windowName) {
-            $('.youama-' + windowName + '-window')
+            $('.rentalbikes-' + windowName + '-window')
                 .slideDown(300, 'easeInOutCirc');
         }
 
@@ -211,14 +211,14 @@
             // Start
             if (step == 'start') {
                 $('.main-'+ windowName +'-loader').fadeIn();
-                $('.youama-' + windowName + '-window')
+                $('.rentalbikes-' + windowName + '-window')
                     .animate({ opacity: '0.4' });
                 $('#'+windowName+'InnerBox')
                     .animate({ opacity: '0.4' });
             // Stop
             } else {
                 $('.main-' + windowName + '-loader').fadeOut('normal', function () {
-                    $('.youama-' + windowName + '-window')
+                    $('.rentalbikes-' + windowName + '-window')
                         .animate({ opacity: '1' });
                     $('#' + windowName + 'InnerBox')
                     .animate({ opacity: '1' });
@@ -235,15 +235,15 @@
         function animateCloseWindow(windowName, quickly, closeParent) {
             if (opts.stop != true){
                 if (quickly == true) {
-                    $('.youama-' + windowName + '-window').hide();
-                    $('.youama-ajaxlogin-error').hide(function() {
+                    $('.rentalbikes-' + windowName + '-window').hide();
+                    $('.rentalbikes-ajaxlogin-error').hide(function() {
                         if (closeParent) {
                             $('#header-account2').removeClass('skip-active');
                         }
                     });
                 } else {
-                    $('.youama-ajaxlogin-error').fadeOut();
-                    $('.youama-' + windowName + '-window').slideUp(function() {
+                    $('.rentalbikes-ajaxlogin-error').fadeOut();
+                    $('.rentalbikes-' + windowName + '-window').slideUp(function() {
                         if (closeParent) {
                             $('#header-account2').removeClass('skip-active');
                         }
@@ -340,28 +340,28 @@
         function setDatas(windowName) {
             // Register window
             if (windowName == 'register') {
-                opts.firstname = $('.youama-' + windowName
-                    + '-window #youama-firstname').val();
-                opts.lastname = $('.youama-' + windowName
-                    + '-window #youama-lastname').val();
+                opts.firstname = $('.rentalbikes-' + windowName
+                    + '-window #rentalbikes-firstname').val();
+                opts.lastname = $('.rentalbikes-' + windowName
+                    + '-window #rentalbikes-lastname').val();
 
-                if ($('.youama-' + windowName
-                    + '-window input[name="youama-newsletter"]:checked')
+                if ($('.rentalbikes-' + windowName
+                    + '-window input[name="rentalbikes-newsletter"]:checked')
                     .length > 0) {
                     opts.newsletter = 'ok';
                 } else {
                     opts.newsletter = 'no';
                 }
 
-                opts.email = $('.youama-' + windowName
-                    + '-window .youama-email').val();
-                opts.password = $('.youama-' + windowName
-                    + '-window .youama-password').val();
-                opts.passwordsecond = $('.youama-' + windowName
-                    + '-window #youama-passwordsecond').val();
+                opts.email = $('.rentalbikes-' + windowName
+                    + '-window .rentalbikes-email').val();
+                opts.password = $('.rentalbikes-' + windowName
+                    + '-window .rentalbikes-password').val();
+                opts.passwordsecond = $('.rentalbikes-' + windowName
+                    + '-window #rentalbikes-passwordsecond').val();
 
-                if ($('.youama-' + windowName
-                    + '-window input[name="youama-licence"]:checked')
+                if ($('.rentalbikes-' + windowName
+                    + '-window input[name="rentalbikes-licence"]:checked')
                     .length > 0) {
                     opts.licence = 'ok';
                 } else {
@@ -369,10 +369,10 @@
                 }
             // Login window
             } else if (windowName == 'login') {
-                opts.email = $('.youama-' + windowName
-                    + '-window .youama-email').val();
-                opts.password = $('.youama-' + windowName
-                    + '-window .youama-password').val();
+                opts.email = $('.rentalbikes-' + windowName
+                    + '-window .rentalbikes-email').val();
+                opts.password = $('.rentalbikes-' + windowName
+                    + '-window .rentalbikes-password').val();
             }
         }
 
@@ -382,9 +382,9 @@
          * @param string windowName
          */
         function setError(errors, windowName) {
-            $('.youama-' + windowName + '-window .youama-ajaxlogin-error')
+            $('.rentalbikes-' + windowName + '-window .rentalbikes-ajaxlogin-error')
                 .text('');
-            $('.youama-' + windowName + '-window .youama-ajaxlogin-error')
+            $('.rentalbikes-' + windowName + '-window .rentalbikes-ajaxlogin-error')
                 .hide();
             var errorArr = new Array();
             errorArr = errors.split(',');
@@ -393,10 +393,10 @@
             for (var i = 0; i < length; i++) {
                 var errorText = $('.ytmpa-' + errorArr[i]).text();
 
-                $('.youama-' + windowName + '-window .err-' + errorArr[i])
+                $('.rentalbikes-' + windowName + '-window .err-' + errorArr[i])
                     .text(errorText);
             }
-            $('.youama-' + windowName + '-window .youama-ajaxlogin-error')
+            $('.rentalbikes-' + windowName + '-window .rentalbikes-ajaxlogin-error')
                 .fadeIn();
         }
 
@@ -666,7 +666,7 @@
      *      licence: string
      * }}
      */
-    $.fn.youamaAjaxLogin.defaults = {
+    $.fn.rentalbikesAjaxLogin.defaults = {
         redirection : '0',
         windowSize : '',
         stop : false,
